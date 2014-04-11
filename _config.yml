@@ -1,0 +1,8 @@
+name: Playtime For The Buck
+markdown: redcarpet
+pygments: true
+exclude: ['Gemfile', 'Gemfile.lock', 'README.md']
+assets:
+  js_compressor:  uglifier
+  css_compressor: sass
+  debug: false
