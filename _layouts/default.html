@@ -12,169 +12,47 @@
         <header class="header">Playtime For The Buck</header>
         <table class="table">
           <thead>
-            <tr class="header-titles">
-              <th>Name</th>
-              <th>Launch date</th>
-              <th>Price</th>
-              <th>Sale price</th>
-              <th>Playtime</th>
-              <th class="hidden">Positive playtime</th>
-              <th class="hidden">Negative playtime</th>
-              <th>Playtime/Price</th>
-              <th class="hidden">Positive reviews</th>
-              <th class="hidden">Negative reviews</th>
-              <th>Total reviews</th>
-              <th>Metascore</th>
-              <th>Average reviews</th>
-              <th>Playtime centiles</th>
-              <th class="hidden">Maximum playtime</th>
-              <th class="hidden">Minimum playtime</th>
-              <th class="hidden" title="Date this data was last updated">Data date</th>
+            <tr titles-container class="header-titles">
+              <th sort="name">Name</th>
+              <th sort="launch_date">Launch date</th>
+              <th sort="price">Price</th>
+              <th sort="sale_price">Sale price</th>
+              <th sort="average_time">Playtime</th>
+              <th sort="average_time_positive" class="hidden">Positive playtime</th>
+              <th sort="average_time_negative" class="hidden">Negative playtime</th>
+              <th sort="averageTimeOverPrice" >Playtime/Price</th>
+              <th sort="positive_reviews" class="hidden">Positive reviews</th>
+              <th sort="negative_reviews" class="hidden">Negative reviews</th>
+              <th sort="totalReviews">Total reviews</th>
+              <th sort="meta_score">Metascore</th>
+              <th sort="">Average reviews</th>
+              <th sort="">Playtime centiles</th>
+              <th sort="max_time" class="hidden">Maximum playtime</th>
+              <th sort="min_time" class="hidden">Minimum playtime</th>
+              <th sort="game_updated_at" class="hidden" title="Date this data was last updated">Data date</th>
             </tr>
-            <tr class="header-filders">
-              <th class="text-filter"><input/></th>
-              <th class="number-filter">
-                <select class="number-filter-pre">
-                  <option val="-1">Newer than</option>
-                  <option val="1">Older than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
+            <tr filters-container class="header-filters">
+              <th filter="name" text-filter><input/></th>
+              <th filter="launch_date" number-filter number-filter-date></th>
+              <th filter="price" number-filter></th>
+              <th filter="sale_price" number-filter></th>
+              <th filter="average_time" number-filter number-filter-reverse></th>
+              <th filter="average_time_positive" number-filter number-filter-reverse class="hidden"></th>
+              <th filter="average_time_negative" number-filter number-filter-reverse class="hidden"></th>
+              <th filter="averageTimeOverPrice" number-filter></th>
+              <th filter="positive_reviews" number-filter class="hidden"></th>
+              <th filter="negative_reviews" number-filter class="hidden"></th>
+              <th filter="totalReviews" number-filter></th>
+              <th filter="meta_score" number-filter></th>
+              <th filter="" number-filter></th>
+              <th filter="" number-filter></th>
+              <th filter="max_time" number-filter number-filter-reverse class="hidden"></th>
+              <th filter="min_time" number-filter number-filter-reverse class="hidden"></th>
+              <th filter="game_updated_at" number-filter number-filter-date class="hidden" title="Date this data was last updated">
               </th>
-              <th class="number-filter">
-                <select class="number-filter-pre">
-                  <option val="-1">Less than</option>
-                  <option val="1">More than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th class="number-filter">
-                <select class="number-filter-pre">
-                  <option val="-1">Less than</option>
-                  <option val="1">More than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th class="number-filter">
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th class="hidden number-filter">
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th class="hidden number-filter">
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th class="number-filter">
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th class="hidden number-filter">
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th class="hidden">
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th>
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th>
-                <select class="number-filter-pre">
-                  <option val="1">More than</option>
-                  <option val="-1">Less than</option>
-                </select>
-                <select class="number-filter-value">
-                  <option></option>
-                </select>
-              </th>
-              <th>
-                
-              </th>
-              <th>
-                
-              </th>
-              <th class="hidden">Maximum playtime</th>
-              <th class="hidden">Minimum playtime</th>
-              <th class="hidden" title="Date this data was last updated">Data date</th>
             </tr>
           </thead>
-          <tbody>
-            {% for num in (1...150) %}
-              <tr>
-                <td>{{ num }}</td>
-                <td>10 years ago</td>
-                <td>${{ num }}</td>
-                <td>${{ num }}</td>
-                <td>{{ num }} hours</td>
-                <td class="hidden">{{ num }} hours</td>
-                <td class="hidden">{{ num }} hours</td>
-                <td>{{ num }} hours/$</td>
-                <td class="hidden">{{ num }}</td>
-                <td class="hidden">{{ num }}</td>
-                <td>{{ num }}</td>
-                <td>{{ num }}</td>
-                <td>
-                  <div class="positive-reviews"></div>
-                  <div class="negative-reviews"></div>
-                </td>
-                <td>
-                  <div class="centile"></div>
-                  <div class="centile"></div>
-                  <div class="centile"></div>
-                  <div class="centile"></div>
-                  <div class="centile"></div>
-                </td>
-                <td class="hidden">{{ num }} hours</td>
-                <td class="hidden">{{ num }} hours</td>
-                <td class="hidden">7 days ago</td>
-              </tr>
-            {% endfor %}
-          </tbody>
+          <tbody games-container></tbody>
         </table>
       </main>
       {{ content }}

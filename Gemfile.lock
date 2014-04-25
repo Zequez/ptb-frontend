@@ -11,6 +11,7 @@ GEM
     colorator (0.1)
     commander (4.1.6)
       highline (~> 1.6.11)
+    ejs (1.1.1)
     execjs (2.0.2)
     fast-stemmer (1.0.2)
     ffi (1.9.3)
@@ -71,7 +72,8 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-script
-  jekyll (~> 1.5)
+  ejs
+  jekyll (= 1.5.1)
   jekyll-assets
   sass
   uglifier

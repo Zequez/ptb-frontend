@@ -1,0 +1,12 @@
+<select class="number-filter-pre">
+	<% if(reverse) { %>
+		<option val="1"><%= isDate ? 'Older' : 'More'%> than</option>
+		<option val="-1"><%= isDate ? 'Newer' : 'Less'%> than</option>
+	<% } else { %>
+		<option val="-1"><%= isDate ? 'Newer' : 'Less'%> than</option>
+		<option val="1"><%= isDate ? 'Older' : 'More'%> than</option>
+	<% } %>
+</select>
+<select class="number-filter-value">
+  <option></option>
+</select>
