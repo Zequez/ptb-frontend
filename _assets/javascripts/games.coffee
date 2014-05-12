@@ -61,6 +61,8 @@ class PTB.Game extends PTB.TemplateElement
 
 		@attributes.totalReviews = @attributes.positive_reviews + @attributes.negative_reviews
 
-		@attributes.averageTimeOverPrice = Math.round((@attributes.average_time / @attributes.price) * 100) / 100
-		
+		if @attributes.price == 0 or @attributes.price == null or @attributes.average_time == null
+			@attributes.averageTimeOverPrice = null
+		else
+			@attributes.averageTimeOverPrice = Math.round((@attributes.average_time / @attributes.price) * 100) / 100
 		super
