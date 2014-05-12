@@ -25,6 +25,9 @@ class PTB.FiltersContainer extends PTB.DOMElement
 			accepted = filter.filter(accepted, rejected)
 		accepted
 
+	calculateConditions: (games)->
+		filter.calculateConditions(games) for filter in @filters
+
 class PTB.Filter extends PTB.TemplateElement
 	constructor: (@e)->
 		super
@@ -60,6 +63,19 @@ class PTB.NumberFilter extends PTB.Filter
 		@value = parseFloat @eValue.value
 		if isNaN(@value)
 			@value = null
+
+	calculateConditions: (games)->
+		centiles = 15
+		conditions = []
+		values = for game in games
+			game.attributes[@filterValueName]
+		values.sort((a,b)-> a-b)
+		for i in [0...centiles]
+			centilePosition = parseInt( (values.length/centiles) * i)
+			conditions[i] = values[centilePosition]
+		conditions.push values[values.length-1]
+		console.log conditions
+
 
 	filter: (input, rejected)->
 		# We need 2 arrays so we can show/hide the appropiate games without having
