@@ -7,9 +7,9 @@
   <td class="hidden"><%=average_time_positive %> hours</td>
   <td class="hidden"><%=average_time_negative %> hours</td>
   <td><%= averageTimeOverPrice %> hours/$</td>
-  <td class="hidden"><%=positive_reviews %></td>
-  <td class="hidden"><%=negative_reviews %></td>
-  <td><%=totalReviews %></td>
+  <td class="hidden"><%=positive_reviews %><%= (positive_reviews >= 1000) ? '+' : '' %></td>
+  <td class="hidden"><%=negative_reviews %><%= (negative_reviews >= 1000) ? '+' : '' %></td>
+  <td><%=totalReviews %><%= (totalReviews >= 1000) ? '+' : '' %></td>
   <td><%=meta_score %></td>
   <td>
     <div class="positive-reviews"></div>

@@ -39,7 +39,7 @@ a
 	td, th, &
 		border: solid 1px darken($tableColor, 3%)
 
-	tbody tr:nth-child(odd)
+	tbody tr:nth-of-type(odd)
 		background-color: darken($tableColor, 2%)
 
 	td
@@ -47,3 +47,18 @@ a
 
 	th
 		padding: 12px 16px
+		cursor: pointer
+		&:after
+			// content: ' ▲'
+			display: inline-block
+			margin-bottom: -3px
+			margin-left: 5px
+			vertical-align: bottom
+			-webkit-transform: scaleY(0.5)
+
+
+		&.ascending:after
+			content: ' ▲'
+
+		&.descending:after
+			content: ' ▼'
