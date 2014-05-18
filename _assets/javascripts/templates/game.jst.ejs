@@ -1,9 +1,14 @@
 <tr game>
   <td><a href="http://store.steampowered.com/app/<%=steam_app_id%>"><%=name%></a></td>
   <td><%=launchDateSinceText ? launchDateSinceText + ' ago' : '???' %> </td>
-  <td><%=price ? "$" + price : 'Free' %></td>
-  <td><%=sale_price ? "$" + sale_price : '-' %></td>
-  <td><%=average_time ? average_time + ' hours' : 'N/A' %></td>
+  <td>
+    <% if(sale_price !== null) { %>
+      <span class="strike">$<%= price %></span> <%=sale_price ? "$" + sale_price : 'Free' %>
+    <% } else { %>
+      <%=price ? "$" + price : 'Free' %>
+    <% } %>
+  </td>
+  <td><%=average_time ? average_time + ' hours' : '-' %></td>
   <td class="hidden"><%=max_time %> hours</td>
   <td class="hidden"><%=min_time %> hours</td>
   <td class="hidden"><%=average_time_positive %> hours</td>
