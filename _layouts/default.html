@@ -9,7 +9,42 @@
     </head>
     <body>
       <main class="main">
-        <header class="header">Playtime For The Buck</header>
+        <header class="header">
+          <h1 class="title">
+            <a href="/" class="logo">Playtime For The Buck</a>
+          </h1>
+          <small class="subtitle">Discover hidden games</small>
+
+          <div class="dev-info">
+            The whole thing is open source!<br/>
+            <a href="http://github.com/Zequez/PlayTimeForTheBuck.com">Fork me on Github</a> (or just awe at its <em>majesty</em>!)<br/>
+            <a href="http://www.reddit.com/message/compose/?to=Zequez">Message me on Reddit!</a><br/>
+            <a href="http://zequez.com">My personal blog!</a><br/>
+          </div>
+
+          <div class="donate">
+            <img class="bitcoin-qr"/>
+            <p class="donate-title">
+              <span class="bitcoin-title">&larr; Bitcoins tips &darr;</span>
+              <span class="flattr-title">
+                <a href="https://flattr.com/submit/auto?user_id=Zequez&url=http%3A%2F%2Fplaytimeforthebuck.com" target="_blank">
+                  Flattr tips
+                </a>
+              </span>
+              <span class="steam-title">
+                <a href="">Steam tips</a>
+              </span>
+              <span class="reddit-title">
+                <a href="" title="Just the tip">Reddit tips</a>
+              </span>
+              <span class="steam-title">
+                <a href="{% asset_path pencil-tips.jpg %}">Pencil tips</a>
+              </span>
+            </p>
+            <p class="bitcoin-message">All the money goes to coffee!</p>
+            <p class="bitcoin-address">1JAdP95kEYg8ugAAeUQS1UJKwCdU31hJGP</p>
+          </div>
+        </header>
         <table class="table">
           <thead>
             <tr sorters-container class="header-titles">
@@ -25,8 +60,8 @@
               <th sort="negative_reviews" class="hidden">Negative reviews</th>
               <th sort="totalReviews">Total reviews</th>
               <th sort="meta_score">Metascore</th>
-              <th sort="">Average reviews</th>
-              <th sort="">Playtime centiles</th>
+              <th sort="">Reviews distribution</th>
+              <th sort="">Playtime distribution</th>
               <th sort="max_time" class="hidden">Maximum playtime</th>
               <th sort="min_time" class="hidden">Minimum playtime</th>
               <th sort="game_updated_at" class="hidden" title="Date this data was last updated">Data date</th>
@@ -34,20 +69,20 @@
             <tr filters-container class="header-filters">
               <th filter="name" text-filter><input/></th>
               <th filter="launch_date" number-filter number-filter-date></th>
-              <th filter="price" number-filter filter-options="0 Free,0 0+,1,3,5,10,15,20,30,40,50,70,100"></th>
-              <th filter="sale_price" number-filter></th>
-              <th filter="average_time" number-filter number-filter-reverse></th>
-              <th filter="average_time_positive" number-filter number-filter-reverse class="hidden"></th>
-              <th filter="average_time_negative" number-filter number-filter-reverse class="hidden"></th>
-              <th filter="averageTimeOverPrice" number-filter number-filter-reverse></th>
-              <th filter="positive_reviews" number-filter class="hidden"></th>
-              <th filter="negative_reviews" number-filter class="hidden"></th>
-              <th filter="totalReviews" number-filter></th>
-              <th filter="meta_score" number-filter></th>
-              <th filter="" number-filter></th>
-              <th filter="" number-filter></th>
-              <th filter="max_time" number-filter number-filter-reverse class="hidden"></th>
-              <th filter="min_time" number-filter number-filter-reverse class="hidden"></th>
+              <th filter="price" number-filter filter-options="0 Free,0 >0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="sale_price" number-filter filter-options="0 Free,0 >0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="average_time" number-filter number-filter-reverse filter-options="0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="average_time_positive" number-filter number-filter-reverse class="hidden" filter-options="0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="average_time_negative" number-filter number-filter-reverse class="hidden" filter-options="0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="averageTimeOverPrice" number-filter number-filter-reverse filter-options="1,2,3,4,5,6,7,8,9,10,12,14,16,18,20"></th>
+              <th filter="positive_reviews" number-filter class="hidden" filter-options="0,1,5,10,50,100,200,300,500,750,1000"></th>
+              <th filter="negative_reviews" number-filter class="hidden" filter-options="0,1,5,10,50,100,200,300,500,750,1000"></th>
+              <th filter="totalReviews" number-filter filter-options="0,1,5,10,50,100,200,300,500,750,1000"></th>
+              <th filter="meta_score" number-filter filter-options="10,20,30,40,50,60,70,80,90"></th>
+              <th></th>
+              <th></th>
+              <th filter="max_time" number-filter number-filter-reverse class="hidden" filter-options="10,20,50,100,200,300,500,700,900,1200"></th>
+              <th filter="min_time" number-filter number-filter-reverse class="hidden" filter-options="1,2,3,4,5,6,7,8,9,10"></th>
               <th filter="game_updated_at" number-filter number-filter-date class="hidden" title="Date this data was last updated">
               </th>
             </tr>

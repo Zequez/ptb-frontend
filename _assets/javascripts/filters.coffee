@@ -76,7 +76,7 @@ class PTB.NumberFilter extends PTB.Filter
 
 		selectedOption = @options[@eValueStart.selectedIndex]
 		if selectedOption
-			@inclusiveStart = not /\+/.test selectedOption[1]
+			@inclusiveStart = not /\>/.test selectedOption[1]
 
 
 	calculateConditions: (games)->
@@ -114,7 +114,7 @@ class PTB.NumberFilter extends PTB.Filter
 			eOption.value = option[0]
 			eOption.innerText = option[1]
 			@eValueStart.appendChild eOption
-			if not /\+/.test option[1]
+			if not /\>/.test option[1]
 				@eValueEnd.appendChild eOption.cloneNode(true)
 
 	readOptions: ->

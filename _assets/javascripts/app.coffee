@@ -8,6 +8,7 @@
 #= require filters
 #= require sorter
 #= require_self
+#= require donate
 
 
 window.app = new PTB.Director
