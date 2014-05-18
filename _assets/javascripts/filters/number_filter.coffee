@@ -2,10 +2,8 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 	name: 'number-filter'
 	options: []
 
-	constructor: (@e)->
-		@attributes = 
-			isDate: @e.attributes['number-filter-date']?
-		super @e
+	constructor: ->
+		super
 		@bind()
 		@readValues()
 		@findPlaceholder()
