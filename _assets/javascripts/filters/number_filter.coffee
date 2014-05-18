@@ -29,8 +29,9 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		parsedValue = {
 			number: parseFloat(value.replace('>', '')),
 			open: />/.test(value)
+			selected: value != ''
 		}
-		parsedValue.value = null if isNaN(parsedValue.value)
+		parsedValue.number = null if isNaN(parsedValue.number)
 		parsedValue
 
 	createOptions: ->
@@ -69,17 +70,30 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		# hide/show all first, or iterate through all the games to check which are rejected
 		# removing the accepted. It's around 8 times faster, I tested. ~5ms vs ~40ms, it's a lot!
 		accepted = []
+		console.log @valueStart, @valueEnd
 		for game in games
 			attrVal = game.attributes[@filterValueName]
-			if not @valueStart.number? and not @valueEnd.number?
+			# If the filter is deactivated
+			if not @valueStart.selected and not @valueEnd.selected
 				accepted.push game
+			# If the value is null, we only accept it
+			# if the start filter is deactivated
+			# or if the start filter is null
+			else if attrVal == null
+				if not @valueStart.selected or @valueStart.number == null
+					accepted.push game
+				else 
+					rejected.push game
 			else
-				attrVal = 0 if not attrVal?
+				numberStart = if (@valueStart.number == null) then 0 else @valueStart.number
+				numberEnd = @valueEnd.number
 				isRejected = false
-				isRejected = attrVal < @valueStart.number if @valueStart.number?
-				if not isRejected and @valueStart.number? and @valueStart.open
-					isRejected = attrVal == @valueStart.number
-				isRejected = attrVal > @valueEnd.number if not isRejected and @valueEnd.number?
+				if @valueStart.selected
+					isRejected = attrVal < numberStart
+				if not isRejected and @valueStart.selected and @valueStart.open
+					isRejected = attrVal == numberStart
+				if not isRejected and @valueEnd.selected
+					isRejected = attrVal > @valueEnd.number
 				
 				if isRejected
 					rejected.push game

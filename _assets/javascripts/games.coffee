@@ -66,6 +66,8 @@ class PTB.Game extends PTB.TemplateElement
 
 		@attributes.totalReviews = @attributes.positive_reviews + @attributes.negative_reviews
 
+		@attributes.price = 0 if not @attributes.price? # TODO: Fix this on the Ruby scrapper
+
 		@attributes.finalPrice = if @attributes.sale_price? then @attributes.sale_price else @attributes.price
 		if @attributes.finalPrice == 0 or @attributes.finalPrice == null or @attributes.average_time == null
 			@attributes.averageTimeOverPrice = null
