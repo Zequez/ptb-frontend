@@ -25,8 +25,8 @@ class PTB.FiltersContainer extends PTB.DOMElement
 			accepted = filter.filter(accepted, rejected)
 		accepted
 
-	calculateConditions: (games)->
-		filter.calculateConditions(games) for filter in @filters
+	createOptions: (games)->
+		filter.createOptions(games) for filter in @filters
 
 class PTB.Filter extends PTB.TemplateElement
 	constructor: (@e)->
@@ -36,10 +36,12 @@ class PTB.Filter extends PTB.TemplateElement
 
 	bind: ->
 
+	createOptions: ->
+
 
 class PTB.NumberFilter extends PTB.Filter
 	name: 'number-filter'
-	options: [['', '']]
+	options: []
 
 	constructor: (@e)->
 		@attributes = 
@@ -49,13 +51,9 @@ class PTB.NumberFilter extends PTB.Filter
 		@readConditions()
 
 	bind: ->
-		# @ePre = @e.$$('.number-filter-pre')
-		# @eValue = @e.$$('.number-filter-value')
 		@eValueStart = @e.$$('.number-filter-value-start')
 		@eValueEnd = @e.$$('.number-filter-value-end')
 
-		# @ePre.addEventListener 'change', => @onChange()
-		# @eValue.addEventListener 'change', => @onChange()
 		@eValueStart.addEventListener 'change', => @onChange()
 		@eValueEnd.addEventListener 'change', => @onChange()
 
@@ -64,11 +62,9 @@ class PTB.NumberFilter extends PTB.Filter
 		@fire('change')
 
 	readConditions: ->
-		# @pre = parseInt @ePre.value
-		# @value = parseFloat @eValue.value
 		@valueStart = parseFloat @eValueStart.value
 		@valueEnd = parseFloat @eValueEnd.value
-		@inclusiveStart = true
+		@filterOutFirstNumber = false
 		if isNaN(@valueStart)
 			@valueStart = null
 		if isNaN(@valueEnd)
@@ -76,39 +72,13 @@ class PTB.NumberFilter extends PTB.Filter
 
 		selectedOption = @options[@eValueStart.selectedIndex]
 		if selectedOption
-			@inclusiveStart = not /\>/.test selectedOption[1]
+			@filterOutFirstNumber = /\>/.test selectedOption[1]
 
+	createOptions: ->
+		@parseOptions()
+		@insertOptions()
 
-	calculateConditions: (games)->
-		@setOptions()
-		return
-		# centiles = 10
-		# conditions = []
-		# conditionsText = []
-		# values = for game in games
-		# 	game.attributes[@filterValueName]
-		# values.sort((a,b)-> a-b)
-		# for i in [0...centiles]
-		# 	centilePosition = parseInt( (values.length/centiles) * i)
-		# 	console.log centilePosition
-		# 	conditions[i] = values[centilePosition]
-
-		# # We add the last value
-		# conditions.push values[values.length-1]
-
-		# # We remove repeated and null elements
-		# newConditions = []
-		# for condition, i in conditions
-		# 	if conditions.indexOf(condition, i+1) == -1 and condition != null
-		# 		newConditions.push condition
-		# conditions = newConditions
-
-		# # If we have a condition 0, we add 0 non inclusive
-		# if conditions[0] == 0
-		# 	conditions.unshift(null)
-
-	setOptions: ->
-		@readOptions()
+	insertOptions: ->
 		for option in @options
 			eOption = document.createElement('option')
 			eOption.value = option[0]
@@ -117,8 +87,8 @@ class PTB.NumberFilter extends PTB.Filter
 			if not /\>/.test option[1]
 				@eValueEnd.appendChild eOption.cloneNode(true)
 
-	readOptions: ->
-		@options = [@options[0]] # We create a new array
+	parseOptions: ->
+		@options = [] # We create a new array
 		@rawOptions = @e.attributes['filter-options']
 		if @rawOptions
 			@rawOptions = @rawOptions.nodeValue
@@ -146,7 +116,8 @@ class PTB.NumberFilter extends PTB.Filter
 				attrVal = 0 if not attrVal?
 				isRejected = false
 				isRejected = attrVal < @valueStart if @valueStart?
-				if not isRejected and @valueStart? and not @inclusiveStart
+				if not isRejected and @valueStart? and @filterOutFirstNumber
+					console.log 'Filtr first!'
 					isRejected = attrVal == @valueStart
 				isRejected = attrVal > @valueEnd if not isRejected and @valueEnd?
 				

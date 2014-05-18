@@ -25,7 +25,7 @@ class PTB.Director
 		@gamesContainer = new PTB.GamesContainer @games
 		@filtersContainer = new PTB.FiltersContainer
 		@sortersContainer = new PTB.SortersContainer
-		@filtersContainer.calculateConditions @games
+		@filtersContainer.createOptions @games
 		@bind()
 
 	bind: ->
