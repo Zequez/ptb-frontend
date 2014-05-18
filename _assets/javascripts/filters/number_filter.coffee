@@ -4,7 +4,6 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 
 	constructor: (@e)->
 		@attributes = 
-			reverse: @e.attributes['number-filter-reverse']?
 			isDate: @e.attributes['number-filter-date']?
 		super @e
 		@bind()
@@ -46,7 +45,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 			eOption.value = option[0]
 			eOption.innerText = option[1]
 			@eValueStart.appendChild eOption
-			if not /\>/.test option[1]
+			if not /\>/.test option[0]
 				@eValueEnd.appendChild eOption.cloneNode(true)
 
 	parseOptions: ->
@@ -56,10 +55,15 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 			@rawOptions = @rawOptions.nodeValue
 			@rawOptions = @rawOptions.split(',')
 			for rawOption in @rawOptions
-				valueText = rawOption.split(' ')
-				if valueText.length == 1
-					valueText.push(valueText[0])
-				@options.push valueText
+				valueAndText = rawOption.replace(' ', '///').split('///') # This is just lazy to allow spaces after the first space
+				if valueAndText.length == 1
+					valueAndText.push(valueAndText[0])
+				valueAndText[0] = @parseOptionsValue(valueAndText[0], valueAndText[1])
+				valueAndText[1] = @parseOptionsText(valueAndText[1], valueAndText[0])
+				@options.push valueAndText
+
+	parseOptionsValue: (value)-> value
+	parseOptionsText: (text)-> text
 
 
 	filter: (games, rejected)->
@@ -70,8 +74,6 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		for game in games
 			attrVal = game.attributes[@filterValueName]
 			if not @valueStart.number? and not @valueEnd.number?
-				accepted.push game
-			else if @attributes.isDate
 				accepted.push game
 			else
 				attrVal = 0 if not attrVal?
@@ -95,7 +97,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		if @eValueStart.value == ''
 			@eStartPlaceholder.selected = true
 		@eValueStart.classList.toggle('placeholdered', @eValueStart.value == '')
-			
+
 		if @eValueEnd.value == ''
 			@eEndPlaceholder.selected = true
 		@eValueEnd.classList.toggle('placeholdered', @eValueEnd.value == '')

@@ -49,10 +49,12 @@
           <thead>
             <tr sorters-container class="header-titles">
               <th sort="name">Name</th>
-              <th sort="launch_date">Launch date</th>
+              <th sort="launchDateSince">Launch date</th>
               <th sort="price">Price</th>
               <th sort="sale_price">Sale price</th>
               <th sort="average_time">Playtime</th>
+              <th sort="max_time" class="hidden">Maximum playtime</th>
+              <th sort="min_time" class="hidden">Minimum playtime</th>
               <th sort="average_time_positive" class="hidden">Positive playtime</th>
               <th sort="average_time_negative" class="hidden">Negative playtime</th>
               <th sort="averageTimeOverPrice" >Playtime/Price</th>
@@ -62,28 +64,24 @@
               <th sort="meta_score">Metascore</th>
               <th sort="">Reviews distribution</th>
               <th sort="">Playtime distribution</th>
-              <th sort="max_time" class="hidden">Maximum playtime</th>
-              <th sort="min_time" class="hidden">Minimum playtime</th>
-              <th sort="game_updated_at" class="hidden" title="Date this data was last updated">Data date</th>
             </tr>
             <tr filters-container class="header-filters">
               <th filter="name" text-filter><input/></th>
-              <th filter="launch_date" number-filter number-filter-date></th>
+              <th filter="launchDateSince" date-filter filter-options=">0d Not ???,1d,1w,1m,3m,6m,1y,2y,3y,5y,10y,15y,20y"></th>
               <th filter="price" number-filter filter-options="0 Free,>0,1,3,5,10,15,20,30,40,50,70,100"></th>
               <th filter="sale_price" number-filter filter-options="0 Free,>0,1,3,5,10,15,20,30,40,50,70,100"></th>
-              <th filter="average_time" number-filter number-filter-reverse filter-options="0,>0,1,3,5,10,15,20,30,40,50,70,100"></th>
-              <th filter="average_time_positive" number-filter number-filter-reverse class="hidden" filter-options="0,1,3,5,10,15,20,30,40,50,70,100"></th>
-              <th filter="average_time_negative" number-filter number-filter-reverse class="hidden" filter-options="0,1,3,5,10,15,20,30,40,50,70,100"></th>
-              <th filter="averageTimeOverPrice" number-filter number-filter-reverse filter-options="1,2,3,4,5,6,7,8,9,10,12,14,16,18,20"></th>
+              <th filter="average_time" number-filter filter-options="0,>0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="max_time" number-filter class="hidden" filter-options="10,20,50,100,200,300,500,700,900,1200"></th>
+              <th filter="min_time" number-filter class="hidden" filter-options="1,2,3,4,5,6,7,8,9,10"></th>
+              <th filter="average_time_positive" number-filter class="hidden" filter-options="0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="average_time_negative" number-filter class="hidden" filter-options="0,1,3,5,10,15,20,30,40,50,70,100"></th>
+              <th filter="averageTimeOverPrice" number-filter filter-options="1,2,3,4,5,6,7,8,9,10,12,14,16,18,20"></th>
               <th filter="positive_reviews" number-filter class="hidden" filter-options="0,1,5,10,50,100,200,300,500,750,1000"></th>
               <th filter="negative_reviews" number-filter class="hidden" filter-options="0,1,5,10,50,100,200,300,500,750,1000"></th>
               <th filter="totalReviews" number-filter filter-options="0,1,5,10,50,100,200,300,500,750,1000"></th>
               <th filter="meta_score" number-filter filter-options="10,20,30,40,50,60,70,80,90"></th>
               <th></th>
               <th></th>
-              <th filter="max_time" number-filter number-filter-reverse class="hidden" filter-options="10,20,50,100,200,300,500,700,900,1200"></th>
-              <th filter="min_time" number-filter number-filter-reverse class="hidden" filter-options="1,2,3,4,5,6,7,8,9,10"></th>
-              <th filter="game_updated_at" number-filter number-filter-date class="hidden" title="Date this data was last updated">
               </th>
             </tr>
           </thead>

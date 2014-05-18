@@ -50,14 +50,19 @@ class PTB.Game extends PTB.TemplateElement
 	tmpWrapper: 'tbody'
 	displayValue: 'table-row'
 
-	constructor: (@attributes)->
-		@attributes.launchDateSince = if @attributes.launch_date 
-		then timeSince(new Date(@attributes.launch_date))
-		else null
+	dateNow: Date.now()
 
-		@attributes.gameUpdatedAtSince = if @attributes.gameUpdatedAtSince
-		then timeSince(new Date(@attributes.game_updated_at))
-		else null
+	constructor: (@attributes)->
+		if @attributes.launch_date
+			@attributes.launchDateSince = @dateNow - @attributes.launch_date
+			@attributes.launchDateSinceText = timeSince(new Date(@attributes.launch_date))
+		else 
+			@attributes.launchDateSince = null
+			@attributes.launchDateSinceText = null
+
+		# @attributes.gameUpdatedAtSince = if @attributes.gameUpdatedAtSince
+		# then timeSince(new Date(@attributes.game_updated_at))
+		# else null
 
 		@attributes.totalReviews = @attributes.positive_reviews + @attributes.negative_reviews
 
