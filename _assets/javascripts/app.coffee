@@ -6,6 +6,7 @@
 #= require elements
 #= require games
 #= require filters
+#= require_tree './filters'
 #= require sorter
 #= require_self
 #= require donate

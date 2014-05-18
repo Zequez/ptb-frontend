@@ -60,6 +60,8 @@ class PTB.Director
 
 		if not shrinker
 			@sort()
+		else
+			@gamesContainer.autoLoad()
 
 	sort: ->
 		@sortersContainer.sort @filteredGames
