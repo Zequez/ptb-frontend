@@ -8,7 +8,8 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 			isDate: @e.attributes['number-filter-date']?
 		super @e
 		@bind()
-		@readConditions()
+		@readValues()
+		@findPlaceholder()
 
 	bind: ->
 		@eValueStart = @e.$$('.number-filter-value-start')
@@ -18,21 +19,22 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		@eValueEnd.addEventListener 'change', => @onChange()
 
 	onChange: ->
-		@readConditions()
+		@applyPlaceholder()
+		@readValues()
 		@fire('change')
 
-	readConditions: ->
-		@valueStart = parseFloat @eValueStart.value
-		@valueEnd = parseFloat @eValueEnd.value
+	readValues: ->
+		@valueStart = @parseValue @eValueStart.value
+		@valueEnd = @parseValue @eValueEnd.value
 		@filterOutFirstNumber = false
-		if isNaN(@valueStart)
-			@valueStart = null
-		if isNaN(@valueEnd)
-			@valueEnd = null
 
-		selectedOption = @options[@eValueStart.selectedIndex]
-		if selectedOption
-			@filterOutFirstNumber = /\>/.test selectedOption[1]
+	parseValue: (value)->
+		parsedValue = {
+			number: parseFloat(value.replace('>', '')),
+			open: />/.test(value)
+		}
+		parsedValue.value = null if isNaN(parsedValue.value)
+		parsedValue
 
 	createOptions: ->
 		@parseOptions()
@@ -57,7 +59,6 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 				valueText = rawOption.split(' ')
 				if valueText.length == 1
 					valueText.push(valueText[0])
-				valueText[0] = parseFloat valueText[0]
 				@options.push valueText
 
 
@@ -68,21 +69,33 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		accepted = []
 		for game in games
 			attrVal = game.attributes[@filterValueName]
-			if not @valueStart? and not @valueEnd?
+			if not @valueStart.number? and not @valueEnd.number?
 				accepted.push game
 			else if @attributes.isDate
 				accepted.push game
 			else
 				attrVal = 0 if not attrVal?
 				isRejected = false
-				isRejected = attrVal < @valueStart if @valueStart?
-				if not isRejected and @valueStart? and @filterOutFirstNumber
-					console.log 'Filtr first!'
-					isRejected = attrVal == @valueStart
-				isRejected = attrVal > @valueEnd if not isRejected and @valueEnd?
+				isRejected = attrVal < @valueStart.number if @valueStart.number?
+				if not isRejected and @valueStart.number? and @valueStart.open
+					isRejected = attrVal == @valueStart.number
+				isRejected = attrVal > @valueEnd.number if not isRejected and @valueEnd.number?
 				
 				if isRejected
 					rejected.push game
 				else
 					accepted.push game
 		accepted
+
+	findPlaceholder: ->
+		@eStartPlaceholder = @eValueStart.children[@eValueStart.selectedIndex]
+		@eEndPlaceholder = @eValueEnd.children[@eValueEnd.selectedIndex]
+
+	applyPlaceholder: ->
+		if @eValueStart.value == ''
+			@eStartPlaceholder.selected = true
+		@eValueStart.classList.toggle('placeholdered', @eValueStart.value == '')
+			
+		if @eValueEnd.value == ''
+			@eEndPlaceholder.selected = true
+		@eValueEnd.classList.toggle('placeholdered', @eValueEnd.value == '')
