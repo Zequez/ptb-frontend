@@ -17,16 +17,15 @@
   <td class="hidden"><%=positive_reviews %><%= (positive_reviews >= 1000) ? '+' : '' %></td>
   <td class="hidden"><%=negative_reviews %><%= (negative_reviews >= 1000) ? '+' : '' %></td>
   <td><%=totalReviews %><%= (totalReviews >= 1000) ? '+' : '' %></td>
-  <td><%=meta_score ? meta_score : '-' %></td>
-  <td>
-    <div class="positive-reviews"></div>
-    <div class="negative-reviews"></div>
+  <td><%=(meta_score !== null) ? meta_score : '-' %></td>
+  <td class="reviews-distribution-cell">
+    <% if(positiveReviewsPercentage !== null) { %>
+    <div class="reviews-distribution">
+      <div class="positive-reviews-percentage" style="width: <%=positiveReviewsPercentage%>%"></div>
+    </div>
+    <% } else { %> - <% } %>
   </td>
-  <td>
-    <div class="centile"></div>
-    <div class="centile"></div>
-    <div class="centile"></div>
-    <div class="centile"></div>
-    <div class="centile"></div>
+  <td class="centiles">
+    <%=(playtimeDeviationPercentage !== null) ? playtimeDeviationPercentage : '-'%>
   </td>
 </tr>

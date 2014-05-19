@@ -53,6 +53,8 @@ class PTB.Game extends PTB.TemplateElement
 	dateNow: Date.now()
 
 	constructor: (@attributes)->
+		# All of this could be calculated on the scrapper when saving the data for the client
+		# that way we would have to process less when loading the page
 		if @attributes.launch_date
 			@attributes.launchDateSince = @dateNow - @attributes.launch_date
 			@attributes.launchDateSinceText = timeSince(new Date(@attributes.launch_date))
@@ -73,4 +75,14 @@ class PTB.Game extends PTB.TemplateElement
 			@attributes.averageTimeOverPrice = null
 		else
 			@attributes.averageTimeOverPrice = Math.round((@attributes.average_time / @attributes.finalPrice) * 100) / 100
+
+		if @attributes.playtime_deviation?
+			@attributes.playtimeDeviationPercentage = Math.floor((@attributes.playtime_deviation / @attributes.average_time - 1) * 100) / 100
+		else
+			@attributes.playtimeDeviationPercentage = null
+
+		if @attributes.totalReviews > 0
+			@attributes.positiveReviewsPercentage = Math.floor(@attributes.positive_reviews/@attributes.totalReviews*100)
+		else
+			@attributes.positiveReviewsPercentage = null
 		super

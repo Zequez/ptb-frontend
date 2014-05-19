@@ -1,9 +1,11 @@
-$primaryColor: #E6E6E6
-$secondaryColor: #252525
+$primaryColor: #E6E6E6 // White
+$secondaryColor: #252525 // Black
+$terciaryColor: #679FAD // Blue
 
 $backgroundColor: $secondaryColor
 $fontColor: #222
 $tableColor: $primaryColor
+$tableHeaderColor: $terciaryColor
 $tableOpacity: 1
 $inputFontColor: #212121
 $headerColor: rgba(71, 161, 204, .2)
@@ -83,7 +85,7 @@ a
 	background-color: rgba($tableColor, $tableOpacity)
 
 	thead
-		background-color: #679FAD
+		background-color: $tableHeaderColor
 		text-transform: uppercase
 
 	// This has bad performance, so fuck it.
@@ -147,9 +149,28 @@ a
 	.header-filters th
 		padding: 8px
 
+	.centiles
+		padding: 5px
+		text-align: center
+	.centile
+		display: inline-block
+		width: 15px
+		background: darken($terciaryColor, 10%)
+
+	.reviews-distribution-cell
+		padding: 5px
+		text-align: center
+	.reviews-distribution
+		display: inline-block
+		width: 100px
+		height: 8px
+		background: red
+	.positive-reviews-percentage
+		height: 100%
+		background: green
+
 
 		
-
 // Inputs
 
 input, select

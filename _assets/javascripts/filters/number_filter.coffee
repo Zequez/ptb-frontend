@@ -70,7 +70,6 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		# hide/show all first, or iterate through all the games to check which are rejected
 		# removing the accepted. It's around 8 times faster, I tested. ~5ms vs ~40ms, it's a lot!
 		accepted = []
-		console.log @valueStart, @valueEnd
 		for game in games
 			attrVal = game.attributes[@filterValueName]
 			# If the filter is deactivated
@@ -84,6 +83,8 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 					accepted.push game
 				else 
 					rejected.push game
+			else if @valueEnd.selected and @valueEnd.number == null
+				rejected.push game
 			else
 				numberStart = if (@valueStart.number == null) then 0 else @valueStart.number
 				numberEnd = @valueEnd.number
