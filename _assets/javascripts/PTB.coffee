@@ -6,6 +6,7 @@ class PTB.Director
   filteredGames: []
 
   constructor: ->
+    @e = $$('.table')
     @fetchGames()
     
   parseResults: (responseText)->
@@ -31,6 +32,7 @@ class PTB.Director
   bind: ->
     @filtersContainer.on 'change', (shrinker)=> @filter(shrinker)
     @sortersContainer.on 'change', => @sort()
+    @e.addEventListener 'click', @onClick.bind(@)
 
   render: ->
     @gamesContainer.setGames @filteredGames
@@ -76,3 +78,8 @@ class PTB.Director
     console.time 'Fetch time'
     request.open 'GET', @gamesUrl, true
     request.send()
+
+  onClick: (ev)->
+    if ev.target.classList.contains('tag')
+      @filtersContainer.broadcast('tag', ev.target.innerText)
+

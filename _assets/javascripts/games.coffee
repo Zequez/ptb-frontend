@@ -22,6 +22,7 @@ class PTB.GamesContainer extends PTB.DOMElement
 		@empty()
 		fragment = document.createDocumentFragment()
 		for game in gamesToRender
+			game.render()
 			fragment.appendChild game.e
 		@e.appendChild fragment
 
@@ -44,11 +45,16 @@ class PTB.GamesContainer extends PTB.DOMElement
 		if document.body.clientHeight-document.body.scrollTop <= @autoLoadPixelsAway
 			@renderMore()
 
+	
+
 
 class PTB.Game extends PTB.TemplateElement
 	name: 'game'
 	tmpWrapper: 'tbody'
 	displayValue: 'table-row'
+
+	oldHighlightedTags: []
+	highlightedTags: []
 
 	dateNow: Date.now()
 
@@ -85,4 +91,22 @@ class PTB.Game extends PTB.TemplateElement
 			@attributes.positiveReviewsPercentage = Math.floor(@attributes.positive_reviews/@attributes.totalReviews*100)
 		else
 			@attributes.positiveReviewsPercentage = null
+
 		super
+
+		@eTags = @e.$('.tag')
+
+	highlightTags: (index)->
+		@highlightedTags.push index
+
+	unhighlightTags: ->
+		@oldHighlightedTags = @highlightedTags
+		@highlightedTags = []
+
+	render: ->
+		for highlightedTagIndex in @highlightedTags
+			console.log @eTags, highlightedTagIndex, @attributes.categories[highlightedTagIndex]
+			@eTags[highlightedTagIndex].classList.add('highlighted')
+
+		for oldHighlightedTagIndex in @oldHighlightedTags
+			@eTags[highlightedTagIndex].classList.remove('highlighted')

@@ -7,6 +7,9 @@ class PTB.Filter extends PTB.TemplateElement
 
 	createOptions: ->
 
+	broadcast: (name, value)->
+		@fire name, value
+
 class PTB.FiltersContainer extends PTB.DOMElement
 	name: 'filters-container'
 
@@ -36,3 +39,7 @@ class PTB.FiltersContainer extends PTB.DOMElement
 
 	createOptions: (games)->
 		filter.createOptions(games) for filter in @filters
+
+	broadcast: (name, value)->
+		for filter in @filters
+			filter.broadcast(name, value)
