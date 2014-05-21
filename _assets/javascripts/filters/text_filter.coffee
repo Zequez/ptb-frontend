@@ -20,6 +20,7 @@ class PTB.Filters.TextFilter extends PTB.Filter
     @fire 'change', @shrinking
 
   filter: (games, rejected)->
+    return games if @value == ''
     accepted = []
     words = @value.replace(/[^a-z0-9 ]|^\s+|\s+$/ig, '').split(/\s+/ig)
     query = new RegExp('^.*' + words.join('.*') + '.*$', 'i')

@@ -9,6 +9,7 @@
 #= require filters/number_filter
 #= require filters/date_filter
 #= require filters/text_filter
+#= require filters/array_filter
 #= require sorter
 #= require_self
 #= require donate
