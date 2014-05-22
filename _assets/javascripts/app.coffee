@@ -5,6 +5,7 @@
 #= require eventable
 #= require elements
 #= require games
+#= require game
 #= require filters
 #= require filters/number_filter
 #= require filters/date_filter

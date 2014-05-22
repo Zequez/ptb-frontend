@@ -9,8 +9,8 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		@findPlaceholder()
 
 	bind: ->
-		@eValueStart = @e.$$('.number-filter-value-start')
-		@eValueEnd = @e.$$('.number-filter-value-end')
+		@eValueStart = @e.getElementsByClassName('number-filter-value-start')[0]
+		@eValueEnd = @e.getElementsByClassName('number-filter-value-end')[0]
 
 		@eValueStart.addEventListener 'change', => @onChange()
 		@eValueEnd.addEventListener 'change', => @onChange()

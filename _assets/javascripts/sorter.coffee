@@ -8,6 +8,7 @@ class PTB.SortersContainer extends PTB.DOMElement
     super
     @buildSorters()
     @bind()
+    @readStatusQuo()
     
 
   buildSorters: ->
