@@ -25,7 +25,6 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
         for tag, i in game.attributes.categories
           for tag_regex in tags_regex
             if tag_regex.test(tag)
-              console.log tag
               matches++
               game.highlightTags(i)
 
@@ -33,7 +32,6 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
         accepted_array[matches-1] ||= []
         accepted_array[matches-1].push game
       else
-        game.unhighlightTags()
         rejected.push game
 
     accepted_array.reverse()

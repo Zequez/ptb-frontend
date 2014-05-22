@@ -14,7 +14,9 @@
           <h1 class="title">
             <a href="/" class="logo">Playtime For The Buck</a>
           </h1>
-          <small class="subtitle">Discover hidden games</small>
+          <small class="subtitle" title="I'm not good with slogans">
+            <em>It ended up being a little more than playtime for the buck: it kind of let you discover games&trade;</em>
+          </small>
 
           <div class="dev-info">
             The whole thing is open source!<br/>
@@ -49,8 +51,8 @@
         <table class="table">
           <thead>
             <tr sorters-container class="header-titles">
-              <th sort="name">Name</th>
-              <th>Tags</th>
+              <th sort="lowerName" class="ascending">Name</th>
+              <th sort="tagsRating" title="Add some tags for this sorting to work">Tags</th>
               <th sort="launchDateSince">Launch date</th>
               <th sort="finalPrice">Price</th>
               <th sort="average_time">Playtime</th>
@@ -58,13 +60,13 @@
               <th sort="min_time" class="hidden">Minimum playtime</th>
               <th sort="average_time_positive" class="hidden">Positive playtime</th>
               <th sort="average_time_negative" class="hidden">Negative playtime</th>
-              <th sort="averageTimeOverPrice" >Playtime/Price</th>
+              <th sort="averageTimeOverPrice" >Playtime/Buck</th>
               <th sort="positive_reviews" class="hidden">Positive reviews</th>
               <th sort="negative_reviews" class="hidden">Negative reviews</th>
               <th sort="totalReviews">Total reviews</th>
               <th sort="meta_score">Metascore</th>
               <th sort="positiveReviewsPercentage">Reviews distribution</th>
-              <th sort="playtimeDeviationPercentage" title="1 guy plays 1 hour and 1 guy plays 999 hours, averages 500 hours: high deviation.&#013;2 guys play 500 hours, average 500 hours: low deviation. ">Playtime deviation [?]</th>
+              <th sort="playtimeDeviationPercentage" title="1 guy plays 1 hour and 1 guy plays 999 hours, averages 500 hours: high disparity.&#013;2 guys play 500 hours, average 500 hours: low disparity. ">Playtime disparity [?]</th>
             </tr>
             <tr filters-container class="header-filters">
               <th filter="name" text-filter></th>

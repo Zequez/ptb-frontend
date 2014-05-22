@@ -62,15 +62,31 @@ class PTB.Sorter extends PTB.DOMElement
     @drawDirection()
 
   sort: (games)->
+    answer = if @ascending then 1 else -1
+
     games.sort (a, b)=>
       aa = a.attributes[@sortValueName]
       bb = b.attributes[@sortValueName]
 
+      # I could do it the "right way" but why bother? 
+      # It's not like I'm going to use negative values anyway
+      aa = -999 if aa == null
+      bb = -999 if bb == null
+
       if aa > bb
-        if @ascending then 1 else -1
+        answer
       else if aa < bb
-        if @ascending then -1 else 1
+        answer*-1
       else
+        # This is the "right way" to make null lower than any number
+        # But it's obviously slower than asigning an arbitrary negative number to null values
+        # Null is always lower
+        # if aa != null and bb == null # aa > bb
+        #   answer
+        # else if aa == null and bb != null # aa < bb
+        #   answer*-1
+        # else
+        #   0
         0
     null
 

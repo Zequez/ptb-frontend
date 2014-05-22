@@ -59,6 +59,11 @@ class PTB.Game extends PTB.TemplateElement
 	dateNow: Date.now()
 
 	constructor: (@attributes)->
+		@oldHighlightedTags = []
+		@highlightedTags = []
+
+		@attributes.lowerName = @attributes.name.toLowerCase()
+
 		# All of this could be calculated on the scrapper when saving the data for the client
 		# that way we would have to process less when loading the page
 		if @attributes.launch_date
@@ -92,21 +97,35 @@ class PTB.Game extends PTB.TemplateElement
 		else
 			@attributes.positiveReviewsPercentage = null
 
+		@attributes.tagsRating = 0
+
 		super
 
 		@eTags = @e.$('.tag')
 
 	highlightTags: (index)->
 		@highlightedTags.push index
+		@calculateTagsRating()
 
 	unhighlightTags: ->
-		@oldHighlightedTags = @highlightedTags
+		@oldHighlightedTags.push(highlightTag) for highlightTag in @highlightedTags
 		@highlightedTags = []
 
+	# The lower the rating, the more matching tags
+	calculateTagsRating: ->
+		# The more tags you have, the lower the rating, thus more precedence
+		majorOrder = - @highlightedTags.length * 1000
+
+		# Tags that are lower in the index (AKA the most relevants) get precedence
+		minorOrder = @highlightedTags.reduce (sum, val)-> sum + val
+
+		@attributes.tagsRating = majorOrder + minorOrder
+
 	render: ->
+		# console.log @attributes.categories, @oldHighlightedTags, @highlightedTags
+		for oldHighlightedTagIndex in @oldHighlightedTags
+			@eTags[oldHighlightedTagIndex].classList.remove('highlighted')
+
 		for highlightedTagIndex in @highlightedTags
-			console.log @eTags, highlightedTagIndex, @attributes.categories[highlightedTagIndex]
 			@eTags[highlightedTagIndex].classList.add('highlighted')
 
-		for oldHighlightedTagIndex in @oldHighlightedTags
-			@eTags[highlightedTagIndex].classList.remove('highlighted')
