@@ -88,10 +88,12 @@
               </th>
             </tr>
           </thead>
-          <tbody games-container></tbody>
+          <tbody games-container>
+            {{ content }}
+          </tbody>
         </table>
       </main>
-      {{ content }}
+      
       {% javascript app %}
     </body>
 </html>

@@ -7,6 +7,7 @@ class PTB.Director
 
   constructor: ->
     @e = $$('.table')
+    @autorender = document.location.hash == '#autorender'
     @fetchGames()
     
   parseResults: (responseText)->
@@ -20,7 +21,7 @@ class PTB.Director
     @filteredGames = @games
     @buildContainers()
     console.timeEnd 'Build time'
-    @render()
+    @render() if @autorender
 
   buildContainers: ->
     @gamesContainer = new PTB.GamesContainer @games

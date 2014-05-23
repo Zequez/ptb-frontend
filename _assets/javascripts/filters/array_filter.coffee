@@ -6,7 +6,7 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
     accepted = []
     accepted_array = []
 
-    tags = @value.replace(/[^a-z0-9, -]|^\s+|\s+$/ig, '').split(/\s*,\s*/ig)
+    tags = @value.replace(/[^a-z0-9, -&]|^\s+|\s+$/ig, '').split(/\s*,\s*/ig)
     for tag, i in tags
       if tag == ''
         tags.splice(i, 1)
