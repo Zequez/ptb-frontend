@@ -16,4 +16,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'ejs'
   s.add_dependency 'jekyll', '= 1.5.0'
   s.add_dependency 'jekyll-assets'
+  s.add_dependency 'bourbon'
+  s.add_dependency 'rake'
 end
