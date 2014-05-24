@@ -1,7 +1,7 @@
 name: Playtime For The Buck
 markdown: redcarpet
 pygments: true
-exclude: ['Gemfile', 'Gemfile.lock', 'README.md', 'generate_pre_built_tables.rb']
+exclude: ['Gemfile', 'Gemfile.lock', 'README.md', 'ptb_frontend.gemspec']
 assets:
   js_compressor:  uglifier
   css_compressor: sass
