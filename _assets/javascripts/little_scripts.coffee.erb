@@ -1,0 +1,53 @@
+isMobile = ->
+  if navigator.userAgent.match(/Android/i) ||
+     navigator.userAgent.match(/webOS/i) ||
+     navigator.userAgent.match(/iPhone/i) ||
+     navigator.userAgent.match(/iPad/i) ||
+     navigator.userAgent.match(/iPod/i) ||
+     navigator.userAgent.match(/BlackBerry/i) ||
+     navigator.userAgent.match(/Windows Phone/i)
+    return true
+  else
+    return false
+
+
+# Donations
+
+messages = [
+  ['All the money goes to coffee!', '15svpDxpjffitY1s3i5UrA3tSwDFuEB74w', '<%= asset_path "wallet-1.png" %>'],
+  ['Money = Food = Life = More apps!', '19ATZc4Upe3hw1ENFhJxrBLdboazFcfTPr', '<%= asset_path "wallet-2.png" %>'],
+  ['So I can keep studying!', '1Jqo3QcypWQaBBsyZJTdFPdnFAeDKrh4Tp', '<%= asset_path "wallet-3.png" %>'],
+  ['Better than Reddit gold!', '1HwCcQLvLfqYyanxjvoDDq4DBHuKkXEnSX', '<%= asset_path "wallet-4.png" %>'],
+  ['Not better than Reddit gold!', '1JxDEcu2fruF2H6EGJPgkzMsQdNXGPh71E', '<%= asset_path "wallet-5.png" %>'],
+  ['My cat demands food!', '1FpGeXf1E65zso9mx37bnenDDH2xQf3nru', '<%= asset_path "wallet-6.png" %>'],
+  ['All the money goes to charity!', '1Di5bPhnNcvFna4trCjJXmaWY8Xop8rf9q', '<%= asset_path "wallet-7.png" %>'],
+  ['Raise the GDP of‏ Argentina by 0.000001%!', '1JdJv7JKJizDgFZxBZfD8DdH7S47ftpr1Z', '<%= asset_path "wallet-8.png" %>'],
+  ['Magic Internet money!', '1GTRugHJiwC1KB8dVWuib4LCHtuUwDmx97', '<%= asset_path "wallet-9.png" %>'],
+  ['Time is money! And I need time to study!', '14qZxou88RNbzyYPQs56Wy5d1aahVY7e37', '<%= asset_path "wallet-10.png" %>']
+]
+
+
+theChoosenOne = Math.floor(Math.random() * messages.length)
+message = messages[theChoosenOne]
+
+eDonate = $$('.donate')
+eMessage = $$('.bitcoin-message')
+eAddress = $$('.bitcoin-address')
+eQr = $$('.bitcoin-qr')
+
+eMessage.innerText = message[0]
+eAddress.innerText = message[1]
+eQr.src            = message[2]
+
+# eDonate.addEventListener 'mouseover', ->
+#   eAddress.classList.remove('hidden')
+# eDonate.addEventListener 'mouseout', ->
+#   eAddress.classList.add('hidden')
+
+# Backflip
+
+if isMobile()
+  for backflip in $('.backflip-container')
+    do (backflip)->
+      backflip.addEventListener 'click', ->
+        backflip.classList.toggle 'active'

@@ -1,0 +1,110 @@
+.header
+  height: 80px
+  margin-bottom: 20px
+  text-align: center
+  color: $invertedFontColor
+  //background-color: $headerColor
+  .logo
+    display: inline-block
+    width: 493px
+    height: 50px
+    margin-top: 5px
+    background: url(asset_path('logo.png')) center center no-repeat
+    text-indent: -9999px
+
+  .subtitle
+    font-size: 16px
+
+  $qrCodeSize: 66px
+  $donateFrontWidth: 150px
+  $donateBackWidth: 550px
+  .donate
+    position: absolute
+    top: 0px
+    left: 0px
+    white-space: nowrap
+    text-align: left
+    height: $qrCodeSize
+    width: $donateFrontWidth
+    color: #fff
+    &:hover, &.active
+      width: $donateBackWidth
+
+    .backflip
+      position: absolute
+      top: 0px
+      left: $qrCodeSize
+      height: $qrCodeSize
+      border-bottom-right-radius: 5px
+      background: darken($terciaryColor, 10%)
+
+    .donate-front
+      width: $donateFrontWidth
+      font-size: 38px
+      line-height: $qrCodeSize
+      text-align: center
+      text-transform: uppercase
+
+    .donate-back
+      padding-left: 5px
+      width: $donateBackWidth
+      line-height: 1.4
+      a, a:visited
+        color: lighten($terciaryColor, 30%)
+
+    .donate-title
+      span:not(:last-child):after
+        content: '|'
+    .bitcoin-message
+      font-style: italic
+    .bitcoin-qr
+      float: left
+      width: $qrCodeSize
+      height: $qrCodeSize
+      margin-right: 5px
+
+  $devInfoFrontWidth: 150px
+  $devInfoBackWidth: 550px
+  .dev-info
+    position: absolute
+    top: 0px
+    right: 0px
+    width: $devInfoFrontWidth
+    height: $qrCodeSize
+    padding-right: 5px
+    text-align: right
+    color: #fff
+
+    &:hover, &.active
+      width: $devInfoBackWidth
+
+    .backflip
+      position: absolute
+      top: 0px
+      right: 0px
+      height: $qrCodeSize
+      border-bottom-left-radius: 5px
+      background: darken($terciaryColor, 10%)
+
+    .dev-info-front
+      padding-top: 10px
+      width: $devInfoFrontWidth
+      font-size: 16px
+      // line-height: $qrCodeSize/2
+      text-align: center
+
+    .dev-info-back
+      width: $devInfoBackWidth
+      // line-height: 1.4
+      a, a:visited
+        color: lighten($terciaryColor, 30%)
+
+
+// Fuck small-widow-users! you can't see the table in such small window anyway
+// @media(max-width: 1024px)
+//   .title .logo
+//     background-size: 75%
+
+// @media(max-width: 800px)
+//   .title .logo
+//     background-size: 50%

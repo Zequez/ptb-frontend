@@ -1,0 +1,43 @@
+td.cropped-column
+  position: relative
+  overflow: hidden
+  min-width: 250px
+  &:hover
+    overflow: visible
+    z-index: 999
+  &.tags-cell
+    .column-cropper
+      left: $tdPaddingV
+.column-cropper
+  position: absolute
+  top: $tdPaddingV
+  bottom: $tdPaddingV
+  left: $tdPaddingH
+  background-color: $tableColor
+tr:nth-of-type(odd) td .column-cropper
+  background-color: #CECECE
+
+.reviews-distribution-cell
+  padding: 5px
+  text-align: center
+.reviews-distribution
+  display: inline-block
+  width: 100px
+  height: 8px
+  background: red
+.positive-reviews-percentage
+  height: 100%
+  background: green
+
+.tag
+  display: inline-block
+  padding: 2px
+  border-radius: 2px
+  background: $terciaryColor
+  color: $invertedFontColor
+  font-size: 12px
+  line-height: $tdLineHeight - 2px - 2px
+  vertical-align: top
+  cursor: pointer
+  &.highlighted
+    background-color: #AD6767

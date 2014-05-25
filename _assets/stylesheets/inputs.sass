@@ -1,0 +1,22 @@
+input, select
+  border: solid 1px rgba(#000, 0.1)
+  padding: 5px
+input
+  border-radius: 2px
+select:first-child
+  border-radius: 2px 0px 0px 2px
+  border-right: none
+select:last-child
+  border-radius: 0px 2px 2px 0px
+
+.number-filter-value-start:after
+  content: 'Min'
+
+.number-filter-value-start, .number-filter-value-end
+  &.placeholdered
+    color: #999
+    option
+      color: initial
+
+select
+  width: 70px

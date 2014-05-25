@@ -13,7 +13,7 @@
 #= require filters/array_filter
 #= require sorter
 #= require_self
-#= require donate
+#= require little_scripts
 
 
 window.app = new PTB.Director

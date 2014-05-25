@@ -5,4 +5,4 @@ exclude: ['Gemfile', 'Gemfile.lock', 'README.md', 'ptb_frontend.gemspec']
 assets:
   js_compressor:  uglifier
   css_compressor: sass
-  debug: false
+  debug: true

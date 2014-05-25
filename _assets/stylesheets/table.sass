@@ -1,0 +1,79 @@
+$tdPaddingV: 5px
+$tdPaddingH: 8px
+$tdLineHeight: 20px
+$borderWidth: 1px
+$borderRadius: 5px
+
+.table
+  margin: auto
+    bottom: 20px
+  white-space: nowrap
+  border-spacing: 0px
+  background-color: $tableColor
+
+  thead
+    background-color: $tableHeaderColor
+    text-transform: uppercase
+
+  // This has bad performance, so fuck it.
+  // tbody tr:hover
+  //  background-color: rgba(#679FAD, 0.5)
+  //  & > td
+  //    background-color: transparent
+
+  // Super table with border radius and alpha borders
+  // Unnecessary? Overkill? YES.
+  td, th
+    border: solid 0px rgba(#000, 0.15)
+    border-right-width: $borderWidth
+    // border-bottom-width: $borderWidth
+    &:first-child
+      border-left-width: $borderWidth
+  tr:first-child > th
+    border-top-width: $borderWidth
+  tr:nth-of-type(odd)
+    td
+      background-color: #CECECE //rgba(#000, 0.1)
+      border-color: #C2C2C2 //rgba(#000, 0.05) // Table cell borders are always inside backgound
+    th
+      background-color: #5C8E9B
+      border-color: #578693
+  // Border radius
+  &
+    border-radius: $borderRadius
+    overflow: hidden // Slightly uglier radius, x10 better selectors!
+  // tr:first-child 
+  //  & > th:first-child
+  //    border-top-left-radius: $borderRadius
+  //  & > th:last-child
+  //    border-top-right-radius: $borderRadius  
+  // tr:last-child 
+  //  & > td:first-child
+  //    border-bottom-left-radius: $borderRadius
+  //  & > td:last-child
+  //    border-bottom-right-radius: $borderRadius
+
+  td
+    padding: $tdPaddingV $tdPaddingH ($tdPaddingV - 1) $tdPaddingH
+    line-height: $tdLineHeight
+
+
+  .header-titles th
+    padding: 8px
+    cursor: pointer
+    &:after
+      // content: ' ▲'
+      display: inline-block
+      margin-bottom: -3px
+      margin-left: 5px
+      vertical-align: bottom
+      -webkit-transform: scaleY(0.5)
+
+    &.ascending:after
+      content: ' ▲'
+
+    &.descending:after
+      content: ' ▼'
+
+  .header-filters th
+    padding: 8px
