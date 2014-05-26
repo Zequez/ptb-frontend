@@ -16,41 +16,52 @@
     font-size: 16px
 
   $qrCodeSize: 66px
-  $donateFrontWidth: 150px
-  $donateBackWidth: 550px
-  .donate
+  $backflipFrontWidth: 150px
+  $backflipBackWidth: 550px
+  .backflip-container
     position: absolute
     top: 0px
-    left: 0px
     white-space: nowrap
-    text-align: left
     height: $qrCodeSize
-    width: $donateFrontWidth
     color: #fff
-    &:hover, &.active
-      width: $donateBackWidth
+
+    a, a:visited
+      color: lighten($terciaryColor, 30%)
 
     .backflip
       position: absolute
       top: 0px
-      left: $qrCodeSize
       height: $qrCodeSize
-      border-bottom-right-radius: 5px
       background: darken($terciaryColor, 10%)
 
+    .backflip-front
+      text-align: center
+
+    .backflip-back
+      line-height: 1.4
+      padding: 0px 5px
+
+  $donateFrontWidth: 150px
+  $donateBackWidth: 550px
+  .donate
+    left: 0px
+    text-align: left
+    width: $backflipFrontWidth + $qrCodeSize
+    &:hover, &.active
+      width: $backflipBackWidth
+
+    .backflip
+      left: $qrCodeSize
+      border-bottom-right-radius: 5px
+
     .donate-front
-      width: $donateFrontWidth
+      width: $backflipFrontWidth
       font-size: 38px
       line-height: $qrCodeSize
-      text-align: center
       text-transform: uppercase
 
     .donate-back
-      padding-left: 5px
-      width: $donateBackWidth
-      line-height: 1.4
-      a, a:visited
-        color: lighten($terciaryColor, 30%)
+      width: $backflipBackWidth - $qrCodeSize
 
     .donate-title
       span:not(:last-child):after
@@ -61,43 +72,28 @@
       float: left
       width: $qrCodeSize
       height: $qrCodeSize
-      margin-right: 5px
 
   $devInfoFrontWidth: 150px
   $devInfoBackWidth: 550px
   .dev-info
-    position: absolute
-    top: 0px
     right: 0px
-    width: $devInfoFrontWidth
-    height: $qrCodeSize
-    padding-right: 5px
+    width: $backflipFrontWidth
     text-align: right
-    color: #fff
-
     &:hover, &.active
-      width: $devInfoBackWidth
+      width: $backflipBackWidth
 
     .backflip
-      position: absolute
-      top: 0px
       right: 0px
-      height: $qrCodeSize
       border-bottom-left-radius: 5px
-      background: darken($terciaryColor, 10%)
 
     .dev-info-front
       padding-top: 10px
-      width: $devInfoFrontWidth
+      width: $backflipFrontWidth
       font-size: 16px
-      // line-height: $qrCodeSize/2
       text-align: center
 
     .dev-info-back
-      width: $devInfoBackWidth
-      // line-height: 1.4
-      a, a:visited
-        color: lighten($terciaryColor, 30%)
+      width: $backflipBackWidth
 
 
 // Fuck small-widow-users! you can't see the table in such small window anyway

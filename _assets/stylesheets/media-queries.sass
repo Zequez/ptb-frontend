@@ -1,0 +1,20 @@
+.small-screen
+  display: none
+.large-screen
+  display: initial
+  
+// Why am I putting the media queries here? I have no idea!
+@media (max-width: 1550px)
+  .small-screen
+    display: initial
+  .large-screen
+    display: none
+
+  .header-filters
+    input, select
+      padding: 2px
+
+  .table
+    .header-titles, .header-filters
+      th
+        padding: 4px
