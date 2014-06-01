@@ -8,4 +8,10 @@ task :watch do
   exec 'jekyll serve -w --force_polling -P 9999'
 end
 
+desc 'Build Jekyll'
+task :build do
+  exec 'jekyll build'
+end
+
+
 task :default => :watch

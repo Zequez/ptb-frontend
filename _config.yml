@@ -6,3 +6,5 @@ assets:
   js_compressor:  uglifier
   css_compressor: sass
   debug: true
+  cachebust: soft
+  gzip: false

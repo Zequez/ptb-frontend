@@ -25,8 +25,8 @@
   <td class="hidden"><%=average_time_positive %> hours</td>
   <td class="hidden"><%=average_time_negative %> hours</td>
   <td><%= averageTimeOverPrice ? averageTimeOverPrice + ' hours/$' : 'N/A'%></td>
-  <td class="hidden"><%=positive_reviews %><%= (positive_reviews >= 1000) ? '+' : '' %></td>
-  <td class="hidden"><%=negative_reviews %><%= (negative_reviews >= 1000) ? '+' : '' %></td>
+  <td class="hidden"><%=positive_reviews_length %><%= (positive_reviews_length >= 1000) ? '+' : '' %></td>
+  <td class="hidden"><%=negative_reviews_length %><%= (negative_reviews_length >= 1000) ? '+' : '' %></td>
   <td><%=totalReviews %><%= (totalReviews >= 1000) ? '+' : '' %></td>
   <td><%=(meta_score !== null) ? meta_score : '-' %></td>
   <td class="reviews-distribution-cell">

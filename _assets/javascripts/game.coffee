@@ -27,7 +27,7 @@ class PTB.Game extends PTB.Eventable
     # then timeSince(new Date(@attributes.game_updated_at))
     # else null
 
-    @attributes.totalReviews = @attributes.positive_reviews + @attributes.negative_reviews
+    @attributes.totalReviews = @attributes.positive_reviews_length + @attributes.negative_reviews_length
 
     @attributes.price = 0 if not @attributes.price? # TODO: Fix this on the Ruby scrapper
 
@@ -43,7 +43,7 @@ class PTB.Game extends PTB.Eventable
       @attributes.playtimeDeviationPercentage = null
 
     if @attributes.totalReviews > 0
-      @attributes.positiveReviewsPercentage = Math.floor(@attributes.positive_reviews/@attributes.totalReviews*100)
+      @attributes.positiveReviewsPercentage = Math.floor(@attributes.positive_reviews_length/@attributes.totalReviews*100)
     else
       @attributes.positiveReviewsPercentage = null
 
