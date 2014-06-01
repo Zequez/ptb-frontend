@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ptb_frontend (0.1.0)
+    ptb_frontend (0.1.1)
       bourbon
       coffee-script
       ejs
@@ -29,7 +29,7 @@ GEM
     commander (4.1.6)
       highline (~> 1.6.11)
     ejs (1.1.1)
-    execjs (2.0.2)
+    execjs (2.1.0)
     fast-stemmer (1.0.2)
     ffi (1.9.3)
     highline (1.6.21)
@@ -45,7 +45,7 @@ GEM
       redcarpet (~> 2.3.0)
       safe_yaml (~> 1.0)
       toml (~> 0.1.0)
-    jekyll-assets (0.7.8)
+    jekyll-assets (0.7.9)
       jekyll (>= 1.0.0, < 3.0.0)
       sass
       sprockets (~> 2.10)
@@ -65,7 +65,7 @@ GEM
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     rack (1.5.2)
-    rake (10.1.0)
+    rake (10.3.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.4)
       ffi (>= 0.5.0)
