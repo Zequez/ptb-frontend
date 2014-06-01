@@ -1,4 +1,4 @@
-Jekyll front site generator for PlaytimeForTheBuck
+Site generator for PlaytimeForTheBuck
 =========
 
 This is the repo that contains the actual code for [PlaytimeForTheBuck.com](http://playtimeforthebuck.com).
