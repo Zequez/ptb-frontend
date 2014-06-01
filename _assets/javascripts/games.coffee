@@ -26,6 +26,7 @@ class PTB.GamesContainer extends PTB.DOMElement
 			fragment.appendChild game.e
 		@e.appendChild fragment
 
+
 		@currentRender = @initialRender
 
 	renderMore: (amount = 50)->
@@ -39,8 +40,8 @@ class PTB.GamesContainer extends PTB.DOMElement
 		@currentRender += amount
 
 	empty: ->
-		@e.innerHTML = ''
-		# @e.removeChild @e.firstChild while @e.firstChild
+		# @e.innerHTML = '' # innerHTML is faster, but you cannot use it on IE, because it murders your children
+		@e.removeChild @e.firstChild while @e.firstChild
 
 	autoLoad: ->
 		if document.body.clientHeight-document.body.scrollTop <= @autoLoadPixelsAway

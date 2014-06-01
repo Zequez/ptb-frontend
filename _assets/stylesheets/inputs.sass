@@ -15,6 +15,8 @@
     +appearance(none)
     text-indent: 0.01px // Workaround for -moz-appearance not working
     text-overflow: '' // Workaround for -moz-appearance not working
+    &::-ms-expand // Workaround for hiding the select arrow on IE10+
+      display: none
     min-width: 30px 
     width: 50%
     background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAFAQMAAACzVGSbAAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAABBJREFUCNdj+AeENQwWDAIAEw4Cwe+JLUQAAAAASUVORK5CYII=) top right no-repeat

@@ -89,11 +89,11 @@ class PTB.Game extends PTB.Eventable
       @eTags[highlightedTagIndex].classList.add('highlighted')
 
   toggle: (show)->
-    return if @display == show
-    @display = show
-    @buildElement()
-    if show
-      @e.style.display = 'table-row'
-    else
-      @e.style.display = 'none'
+    # return if @display == show
+    # @display = show
+    # @buildElement()
+    # if show
+    #   @e.style.display = 'table-row'
+    # else
+    #   @e.style.display = 'none'
 

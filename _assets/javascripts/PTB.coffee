@@ -48,17 +48,17 @@ class PTB.Director
   # from the previous filtered list rather than the whole
   # list of games.
   filter: (shrinker)->
-    #console.time 'Filter time'
+    console.time 'Filter time'
     accepted = if shrinker then @filteredGames else @games
     rejected = []
     accepted = @filtersContainer.filter(@games, rejected)
     #console.log 'Accepted: ', accepted.length
     #console.log 'Rejected: ', rejected.length
-    #console.timeEnd 'Filter time'
+    console.timeEnd 'Filter time'
     #console.time 'Toggle time'
-    if not shrinker
-      game.toggle true for game in accepted
-    game.toggle false for game in rejected
+    # if not shrinker
+      # game.toggle true for game in accepted
+    # game.toggle false for game in rejected
     #console.timeEnd 'Toggle time'
     @filteredGames = accepted
 
