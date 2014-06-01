@@ -39,7 +39,7 @@ class PTB.Sorter extends PTB.DOMElement
   ascending: null
 
   constructor: (@e)->
-    @sortValueName = @e.attributes.sort.nodeValue
+    @sortValueName = @e.attributes.sort.value
     @bind()
     @readStatusQuo()
 

@@ -7,7 +7,7 @@ class PTB.Filter extends PTB.TemplateElement
 		# table cell without setting the width of the table cell
 		@e.style.width = @e.offsetWidth + 'px'
 		super
-		@filterValueName = @e.attributes.filter.nodeValue
+		@filterValueName = @e.attributes.filter.value
 		
 
 	createOptions: ->

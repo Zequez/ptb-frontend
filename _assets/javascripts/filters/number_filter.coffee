@@ -51,7 +51,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		@options = [] # We create a new array
 		@rawOptions = @e.attributes['filter-options']
 		if @rawOptions
-			@rawOptions = @rawOptions.nodeValue
+			@rawOptions = @rawOptions.value
 			@rawOptions = @rawOptions.split(',')
 			for rawOption in @rawOptions
 				valueAndText = rawOption.replace(' ', '///').split('///') # This is just lazy to allow spaces after the first space

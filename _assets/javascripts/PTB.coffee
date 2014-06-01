@@ -8,7 +8,7 @@ class PTB.Director
   constructor: ->
     @e = $$('.table')
     @autorender = document.location.hash == '#autorender'
-    @gamesUrl = document.body.attributes['games-db'].nodeValue
+    @gamesUrl = document.body.attributes['games-db'].value
     @fetchGames()
     
   parseResults: (responseText)->
