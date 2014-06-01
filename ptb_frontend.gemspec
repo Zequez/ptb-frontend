@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.files = [
     "Gemfile"
   ]
-  s.license = 'GPLv3'
+  s.license = 'GPLv2'
   s.add_dependency 'psych', '>= 2.0.5'
   s.add_dependency 'sass'
   s.add_dependency 'uglifier'
