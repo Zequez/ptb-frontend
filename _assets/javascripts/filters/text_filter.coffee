@@ -22,7 +22,7 @@ class PTB.Filters.TextFilter extends PTB.Filter
   filter: (games, rejected)->
     return games if @value == ''
     accepted = []
-    words = @value.replace(/[^a-z0-9 ]|^\s+|\s+$/ig, '').split(/\s+/ig)
+    words = @value.replace(/[^a-z0-9 ]/ig, ' ').replace(/^\s+|\s+$/, '').split(/\s+/ig)
     query = new RegExp('^.*' + words.join('.*') + '.*$', 'i')
     for game in games
       attrVal = game.attributes[@filterValueName]
