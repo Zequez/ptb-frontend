@@ -1,5 +1,4 @@
-Site generator for PlaytimeForTheBuck
-=========
+### Site generator for PlaytimeForTheBuck
 
 This is the repo that contains the actual code for [PlaytimeForTheBuck.com](http://playtimeforthebuck.com).
 
@@ -7,7 +6,6 @@ Jekyll, Jekyll-assets, CoffeeScript and SASS. Didn't use HAML because it didn't 
 
 I could keep talking about what is here, but better you just go to the website.
 
-About
-===========
+### About
 
 Made by Zequez on it's free time. GPLv2 licence.
