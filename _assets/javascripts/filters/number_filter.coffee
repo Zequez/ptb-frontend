@@ -42,7 +42,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 		for option in @options
 			eOption = document.createElement('option')
 			eOption.value = option[0]
-			eOption.innerText = option[1]
+			eOption.innerHTML = option[1]
 			@eValueStart.appendChild eOption
 			if not /\>/.test option[0]
 				@eValueEnd.appendChild eOption.cloneNode(true)

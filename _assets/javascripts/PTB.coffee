@@ -83,5 +83,5 @@ class PTB.Director
 
   onClick: (ev)->
     if ev.target.classList.contains('tag')
-      @filtersContainer.broadcast('tag', ev.target.innerText)
+      @filtersContainer.broadcast('tag', ev.target.innerHTML)
 

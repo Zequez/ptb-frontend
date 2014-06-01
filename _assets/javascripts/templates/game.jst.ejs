@@ -1,14 +1,18 @@
 <tr game>
   <td class="cropped-column">
-    <div class="column-cropper">
-      <a href="http://store.steampowered.com/app/<%=steam_app_id%>"><%=name%></a>
+    <div class="column-cropper-wrapper">
+      <div class="column-cropper">
+        <a href="http://store.steampowered.com/app/<%=steam_app_id%>"><%=name%></a>
+      </div>
     </div>
   </td>
   <td class="tags-cell cropped-column">
-    <div class="column-cropper">
-      <% for(var i = 0; i < categories.length; i++) { %>
-        <span class="tag"><%=categories[i]%></span>
-      <% } %>
+    <div class="column-cropper-wrapper">
+      <div class="column-cropper">
+        <% for(var i = 0; i < categories.length; i++) { %>
+          <span class="tag"><%=categories[i]%></span>
+        <% } %>
+      </div>
     </div>
   </td>
   <td><%=launchDateSinceText ? launchDateSinceText + ' ago' : '???' %> </td>
