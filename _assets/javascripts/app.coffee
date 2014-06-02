@@ -4,6 +4,7 @@
 #= require PTB
 #= require eventable
 #= require elements
+#= require router
 #= require games
 #= require game
 #= require filters

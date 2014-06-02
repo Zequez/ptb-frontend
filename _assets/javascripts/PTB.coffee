@@ -7,7 +7,7 @@ class PTB.Director
 
   constructor: ->
     @e = $$('.table')
-    @autorender = document.location.hash == '#autorender'
+    # @autorender = document.location.hash == '#autorender'
     @gamesUrl = document.body.attributes['games-db'].value
     @fetchGames()
     
@@ -21,19 +21,31 @@ class PTB.Director
       @games.push(new PTB.Game(gameAttr))
     @filteredGames = @games
     @buildContainers()
-    console.timeEnd 'Build time'
-    @render() if @autorender
+    
+    if document.location.hash != ''
+      @router.initializeState()
+    # if @autorender
+    #   @render()
 
   buildContainers: ->
     @gamesContainer = new PTB.GamesContainer @games
     @filtersContainer = new PTB.FiltersContainer
     @sortersContainer = new PTB.SortersContainer
+    @router = new PTB.Router
     @filtersContainer.createOptions @games
     @bind()
 
   bind: ->
-    @filtersContainer.on 'change', (shrinker)=> @filter(shrinker)
-    @sortersContainer.on 'change', => @sort()
+    @filtersContainer.on 'change', (shrinker)=> 
+      @filter(shrinker)
+      @route()
+    @sortersContainer.on 'change', => 
+      @sort()
+      @route()
+    @router.on 'change', (sortState, filterState)=>
+      console.log sortState, filterState
+      @sortersContainer.setSortState(sortState)
+      @filtersContainer.setFiltersState(filterState)
     @e.addEventListener 'click', @onClick.bind(@)
 
   render: ->
@@ -68,6 +80,8 @@ class PTB.Director
     @sortersContainer.sort @filteredGames
     @render()
 
+  route: ->
+    @router.setState(@sortersContainer.getSortState(), @filtersContainer.getFiltersState())
 
   # Get /games.json through AJAX
   fetchGames: ->

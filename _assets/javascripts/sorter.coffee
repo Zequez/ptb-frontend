@@ -19,10 +19,7 @@ class PTB.SortersContainer extends PTB.DOMElement
   bind: ->
     for sorter in @sorters
       sorter.on 'change', (sorter)=>
-        if @activeSorter? and @activeSorter != sorter
-          @activeSorter.reset()
-        @activeSorter = sorter
-        @fire 'change'
+        @changeSorter(sorter)
 
   sort: (games)->
     if @activeSorter
@@ -35,6 +32,23 @@ class PTB.SortersContainer extends PTB.DOMElement
         @activeSorter = sorter
         return
 
+  getSortState: ->
+    name: @activeSorter.sortValueName
+    value: @activeSorter.ascending
+
+  setSortState: (sortState)->
+    for sorter in @sorters
+      if sorter.sortValueName == sortState.name
+        sorter.setAscending(sortState.value)
+        @changeSorter(sorter)
+
+  changeSorter: (sorter)->
+    if @activeSorter? and @activeSorter != sorter
+      @activeSorter.reset()
+    @activeSorter = sorter
+    @fire 'change'
+
+
 class PTB.Sorter extends PTB.DOMElement
   ascending: null
 
@@ -45,6 +59,11 @@ class PTB.Sorter extends PTB.DOMElement
 
   bind: ->
     @e.addEventListener 'click', => @changeDirection() 
+
+  setAscending: (ascending)->
+    @ascending = ascending == true
+    @descending = ascending == false
+    @drawDirection()
 
   changeDirection: ->
     @ascending = !@ascending
@@ -88,9 +107,13 @@ class PTB.Sorter extends PTB.DOMElement
         #   answer*-1
         # else
         #   0
-        0
+        a.attributes.steam_app_id - b.attributes.steam_app_id
     null
 
 
   readStatusQuo: ->
-    @ascending = @e.classList.contains 'ascending'
+    startAscending = @e.classList.contains 'ascending'
+    startDescending = @e.classList.contains 'descending'
+    if startAscending == true or startDescending == true
+      @ascending = startAscending
+      @descending = startDescending
