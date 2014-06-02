@@ -43,7 +43,6 @@ class PTB.Director
       @sort()
       @route()
     @router.on 'change', (sortState, filterState)=>
-      console.log sortState, filterState
       @sortersContainer.setSortState(sortState)
       @filtersContainer.setFiltersState(filterState)
     @e.addEventListener 'click', @onClick.bind(@)

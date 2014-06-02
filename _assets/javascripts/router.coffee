@@ -53,7 +53,6 @@ class PTB.Router extends PTB.Eventable
 
     [sortParameter, filterParameter] = @separateParameters(parameters)
 
-    console.log @callbacks
     @fire('change', sortParameter, filterParameter)
 
   capitalize: (string)->
