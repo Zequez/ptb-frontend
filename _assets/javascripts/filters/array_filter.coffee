@@ -6,7 +6,8 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
     accepted = []
     accepted_array = []
 
-    tags = @value.replace(/[^a-z0-9, -&]|^\s+|\s+$/ig, '').split(/\s*,\s*/ig)
+    tags = @value.replace(/[^a-z0-9 \-&]/ig, ' ').replace(/-/g, '\\-').replace(/^\s+|\s+$/, '').split(/\s*,\s*/ig)
+    console.log tags
     for tag, i in tags
       if tag == ''
         tags.splice(i, 1)
@@ -17,6 +18,8 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
       return games
 
     tags_regex = tags.map((tag)-> new RegExp("^" + tag, 'i'))
+
+    console.log tags_regex
 
     for game in games
       matches = 0
