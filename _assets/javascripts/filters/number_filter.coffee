@@ -23,10 +23,36 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 	readValues: ->
 		@valueStart = @parseValue @eValueStart.value
 		@valueEnd = @parseValue @eValueEnd.value
-		@filterOutFirstNumber = false
+		@active = @valueStart.selected || @valueEnd.selected
+
+	writeValues: ->
+		@eValueStart.value = @valueStart.raw
+		@eValueEnd.value = @valueEnd.raw
+
+	setUrlValue: (value)->
+		console.log 'SET VALUE!'
+		[start, end] = value.split(/~/)
+		@valueStart = @parseValue(start)
+		@valueEnd = @parseValue(end)
+		@active = @valueStart.selected || @valueEnd.selected
+		@writeValues()
+
+	getUrlValue: ->
+		# start = if @valueStart.selected
+		# 	number = @valueStart.number
+		# 	if @valueStart.open then ">#{number}" else number
+		# else '*'
+
+		# end = if @valueEnd.selected
+		# 	number = @valueEnd.number
+		# 	if @valueEnd.open then ">#{number}" else number
+		# else '*'
+
+		[@valueStart.raw, @valueEnd.raw].join('~')
 
 	parseValue: (value)->
 		parsedValue = {
+			raw: value
 			number: parseFloat(value.replace('>', '')),
 			open: />/.test(value)
 			selected: value != ''

@@ -1,6 +1,8 @@
 PTB.Filters = {}
 
 class PTB.Filter extends PTB.TemplateElement
+  active: false
+
   constructor: (@e)->
     # Sadly I had to recur to JS since I didn't find a way
     # for the select elements to aquire 50% width of the
@@ -50,5 +52,16 @@ class PTB.FiltersContainer extends PTB.DOMElement
       filter.broadcast(name, value)
 
   getFiltersState: ->
+    console.log 'GET!'
+    states = []
+    for filter in @filters
+      if filter.active
+        states.push { name: filter.filterValueName, value: filter.getUrlValue() }
+    states
 
-  setFiltersState: ->
+  setFiltersState: (states)->
+    console.log 'SET!'
+    for state in states
+      for filter in @filters
+        if filter.filterValueName is state.name
+          filter.setUrlValue state.value

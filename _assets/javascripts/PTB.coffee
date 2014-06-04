@@ -45,6 +45,7 @@ class PTB.Director
     @router.on 'change', (sortState, filterState)=>
       @sortersContainer.setSortState(sortState)
       @filtersContainer.setFiltersState(filterState)
+      @filter()
     @e.addEventListener 'click', @onClick.bind(@)
 
   render: ->

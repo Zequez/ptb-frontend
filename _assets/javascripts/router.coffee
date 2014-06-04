@@ -35,10 +35,11 @@ class PTB.Router extends PTB.Eventable
     [sortParameter, parameters]
 
   setHash: (parameters)->
+    console.log parameters
     arrayStringParameters = for parameter in parameters
       encodedValue = encodeURIComponent(parameter.value)
       stringParameter = parameter.name + (if parameter.value then "=#{encodedValue}" else '')
-
+    
     @ignoreNextEvent = true
     window.location.hash = arrayStringParameters.join('&')
 

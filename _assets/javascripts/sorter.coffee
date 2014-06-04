@@ -20,6 +20,7 @@ class PTB.SortersContainer extends PTB.DOMElement
     for sorter in @sorters
       sorter.on 'change', (sorter)=>
         @changeSorter(sorter)
+        @fire 'change'
 
   sort: (games)->
     if @activeSorter
@@ -46,7 +47,6 @@ class PTB.SortersContainer extends PTB.DOMElement
     if @activeSorter? and @activeSorter != sorter
       @activeSorter.reset()
     @activeSorter = sorter
-    @fire 'change'
 
 
 class PTB.Sorter extends PTB.DOMElement
@@ -75,7 +75,6 @@ class PTB.Sorter extends PTB.DOMElement
     descending = @ascending == false
     @e.classList.toggle 'ascending', ascending
     @e.classList.toggle 'descending', descending
-
 
   reset: ->
     @ascending = null
