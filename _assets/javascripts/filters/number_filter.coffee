@@ -30,28 +30,33 @@ class PTB.Filters.NumberFilter extends PTB.Filter
     @eValueEnd.value = @valueEnd.raw
 
   setUrlValue: (hashValue)->
-    [start, end] = hashValue.split(/~/)
-
+    [start, end] = hashValue.replace(/\+/g, '>').split(/~/)
+    foundStart = false
+    foundEnd = false
     for option in @options
       if option.raw == start
         @valueStart = @parseValue option.value
+        foundStart = true
 
       if option.raw == end
         @valueEnd = @parseValue option.value
-    
+        foundEnd = true
+
+    if not foundStart and start != ''
+      option = @parseOption(start)
+      @options.push option
+      @insertOption option
+      @valueStart = @parseValue option.value
+    if not foundEnd and end != ''
+      option = @parseOption(end)
+      @options.push option
+      @insertOption option
+      @valueEnd = @parseValue option.value
+
     @active = @valueStart.selected || @valueEnd.selected
     @writeValues()
 
   getUrlValue: ->
-    # start = if @valueStart.selected
-    #   number = @valueStart.number
-    #   if @valueStart.open then ">#{number}" else number
-    # else '*'
-
-    # end = if @valueEnd.selected
-    #   number = @valueEnd.number
-    #   if @valueEnd.open then ">#{number}" else number
-    # else '*'
     start = ''
     end = ''
     for option in @options
@@ -61,7 +66,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
       if option.value == @valueEnd.raw
         end = option.raw
 
-    [start, end].join('~')
+    [start, end].join('~').replace(/>/g, ' ')
 
   parseValue: (value)->
     parsedValue = {
@@ -79,13 +84,16 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 
   insertOptions: ->
     for option in @options
-      option.eStart = document.createElement('option')
-      option.eStart.value = option.value
-      option.eStart.innerHTML = option.label
-      @eValueStart.appendChild option.eStart
-      if not /\>/.test option.value
-        option.eEnd = option.eStart.cloneNode(true)
-        @eValueEnd.appendChild option.eEnd
+      @insertOption(option)
+
+  insertOption: (option)->
+    option.eStart = document.createElement('option')
+    option.eStart.value = option.value
+    option.eStart.innerHTML = option.label
+    @eValueStart.appendChild option.eStart
+    if not /\>/.test option.value
+      option.eEnd = option.eStart.cloneNode(true)
+      @eValueEnd.appendChild option.eEnd
 
   parseOptions: ->
     @options = [] # We create a new array
@@ -94,16 +102,18 @@ class PTB.Filters.NumberFilter extends PTB.Filter
       @rawOptions = @rawOptions.value
       @rawOptions = @rawOptions.split(',')
       for rawOption in @rawOptions
-        valueAndText = rawOption.replace(' ', '///').split('///') # This is just lazy to allow spaces after the first space
-        if valueAndText.length == 1
-          valueAndText.push(valueAndText[0])
-        option =
-          raw: valueAndText[0]
-          value: @parseOptionsValue(valueAndText[0], valueAndText[1])
-          label: @parseOptionsText(valueAndText[1], valueAndText[0])
-          eStart: null
-          eEnd: null
-        @options.push option
+        @options.push @parseOption(rawOption)
+
+  parseOption: (rawOption)->
+    valueAndText = rawOption.replace(' ', '///').split('///') # This is just lazy to allow spaces after the first space
+    if valueAndText.length == 1
+      valueAndText.push(valueAndText[0])
+    option =
+      raw: valueAndText[0]
+      value: @parseOptionsValue(valueAndText[0], valueAndText[1])
+      label: @parseOptionsText(valueAndText[1], valueAndText[0])
+      eStart: null
+      eEnd: null
 
   parseOptionsValue: (value)-> value
   parseOptionsText: (text)-> text

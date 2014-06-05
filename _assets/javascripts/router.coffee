@@ -37,7 +37,7 @@ class PTB.Router extends PTB.Eventable
   setHash: (parameters)->
     console.log parameters
     arrayStringParameters = for parameter in parameters
-      encodedValue = encodeURIComponent(parameter.value)
+      encodedValue = encodeURIComponent(parameter.value).replace(/%20/g, "+")
       stringParameter = parameter.name + (if parameter.value then "=#{encodedValue}" else '')
     
     @ignoreNextEvent = true
