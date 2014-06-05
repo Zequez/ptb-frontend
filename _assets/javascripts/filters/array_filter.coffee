@@ -21,8 +21,9 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
     for game in games
       matches = 0
       game.unhighlightTags()
-      if game.attributes.categories
-        for tag, i in game.attributes.categories
+      attribute = game.attributes[@filterValueName]
+      if attribute
+        for tag, i in attribute
           for tag_regex in tags_regex
             if tag_regex.test(tag)
               matches++
