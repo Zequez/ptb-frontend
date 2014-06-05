@@ -4,6 +4,7 @@
 #= require PTB
 #= require eventable
 #= require elements
+#= require hardAlias
 #= require router
 #= require games
 #= require game

@@ -66,7 +66,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
       if option.value == @valueEnd.raw
         end = option.raw
 
-    [start, end].join('~').replace(/>/g, ' ')
+    [start, end].join('~').replace(/>/g, '+')
 
   parseValue: (value)->
     parsedValue = {
