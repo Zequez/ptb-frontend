@@ -52,15 +52,14 @@ class PTB.FiltersContainer extends PTB.DOMElement
       filter.broadcast(name, value)
 
   getFiltersState: ->
-    states = []
+    states = {}
     for filter in @filters
       if filter.active
-        states.push { name: filter.filterValueName, value: filter.getUrlValue() }
+        states[filter.filterValueName] = filter.getUrlValue()
     states
 
   setFiltersState: (states)->
-    for state in states
+    for stateName, stateValue of states
       for filter in @filters
-        if filter.filterValueName is state.name
-
-          filter.setUrlValue state.value
+        if filter.filterValueName is stateName
+          filter.setUrlValue stateValue

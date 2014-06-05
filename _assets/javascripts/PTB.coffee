@@ -81,9 +81,12 @@ class PTB.Director
     @render()
 
   route: ->
-    states = @filtersContainer.getFiltersState()
-    states.push @sortersContainer.getSortState()
-    @router.setState(states)
+    filterStates = @filtersContainer.getFiltersState()
+    sorterStates = @sortersContainer.getSortState()
+    for stateName, stateValue of sorterStates
+      filterStates[stateName] = stateValue
+
+    @router.setState(filterStates)
 
   # Get /games.json through AJAX
   fetchGames: ->

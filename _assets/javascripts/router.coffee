@@ -24,6 +24,10 @@ class PTB.Router extends PTB.Eventable
     'playtimeDeviationPercentage': 'playtimeDisparity'
   }
 
+  hardAlias: {
+    '/recently-launched': {launchDate: '+0d~', sortLaunchDate: null}
+  }
+
   constructor: ->
     @bind()
 
@@ -36,13 +40,14 @@ class PTB.Router extends PTB.Eventable
     @readHash()
 
   setState: (states)->
+    console.log states
     @setHash(states)
 
   setHash: (parameters)->
     parameters = @parametersToAlias(parameters)
-    arrayStringParameters = for parameter in parameters
-      encodedValue = encodeURIComponent(parameter.value).replace(/%20/g, "+")
-      stringParameter = parameter.name + (if parameter.value then "=#{encodedValue}" else '')
+    arrayStringParameters = for parameterName, parameterValue of parameters
+      encodedValue = encodeURIComponent(parameterValue).replace(/%20/g, "+")
+      stringParameter = parameterName + (if parameterValue then "=#{encodedValue}" else '')
     
     @ignoreNextEvent = true
     window.location.hash = arrayStringParameters.join('&')
@@ -51,24 +56,30 @@ class PTB.Router extends PTB.Eventable
     stringParameters = stringParameters[1..] if stringParameters[0] == '#'
     arrayStringParameters = stringParameters.split('&')
 
-    parameters = for stringParameter in arrayStringParameters
+    parameters = {}
+    for stringParameter in arrayStringParameters
       nameValue = stringParameter.split(/\=/)
-      name: nameValue[0]
-      value: if nameValue[1] then decodeURIComponent(nameValue[1]) else null
+      parameters[nameValue[0]] = (if nameValue[1] then decodeURIComponent(nameValue[1]) else null)
 
     @parametersFromAlias(parameters)
 
     @fire('change', parameters)
 
   parametersToAlias: (parameters)->
-    for parameter in parameters
-      if @parametersAlias[parameter.name]
-        parameter.name = @parametersAlias[parameter.name]
+    for parameterName, parameterValue of parameters
+      if @parametersAlias[parameterName]
+        parameters[@parametersAlias[parameterName]] = parameterValue
     parameters
 
+  parametersToHardAlias: (parameters)->
+    '/'
+
   parametersFromAlias: (parameters)->
-    for parameter in parameters
+    for parameterName, parameterValue of parameters
       for name, alias of @parametersAlias
-        if parameter.name == alias
-          parameter.name = name
+        if name == parameterName
+          parameters[alias] = parameterValue
     parameters
+
+  parametersFromHardAlias: (hardAlias)->
+    {}

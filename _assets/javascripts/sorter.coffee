@@ -34,16 +34,17 @@ class PTB.SortersContainer extends PTB.DOMElement
         return
 
   getSortState: ->
-    name: @addSortPrefix @activeSorter.sortValueName
-    value: if @activeSorter.ascending then null else 'descending'
+    states = {}
+    states[@addSortPrefix @activeSorter.sortValueName] = (if @activeSorter.ascending then null else 'descending')
+    states
 
   setSortState: (states)->
-    for state in states
-      if state.name[0..3] == 'sort'
-        unprefixedName = @removeSortPrefix(state.name)
+    for stateName, stateValue of states
+      if stateName[0..3] == 'sort'
+        unprefixedName = @removeSortPrefix(stateName)
         for sorter in @sorters
           if sorter.sortValueName == unprefixedName
-            sorter.setAscending(state.value != 'descending')
+            sorter.setAscending(stateValue != 'descending')
             @changeSorter(sorter)
 
   changeSorter: (sorter)->
