@@ -1,6 +1,10 @@
 class PTB.Router extends PTB.Eventable
   ignoreNextEvent: false
 
+  parametersAlias: {
+    'categories': 'tags'
+  }
+
   constructor: ->
     @bind()
 
@@ -35,7 +39,7 @@ class PTB.Router extends PTB.Eventable
     [sortParameter, parameters]
 
   setHash: (parameters)->
-    console.log parameters
+    parameters = @parametersToAlias(parameters)
     arrayStringParameters = for parameter in parameters
       encodedValue = encodeURIComponent(parameter.value).replace(/%20/g, "+")
       stringParameter = parameter.name + (if parameter.value then "=#{encodedValue}" else '')
@@ -52,9 +56,24 @@ class PTB.Router extends PTB.Eventable
       name: nameValue[0]
       value: if nameValue[1] then decodeURIComponent(nameValue[1]) else null
 
+    parameters = @parametersFromAlias(parameters)
+
     [sortParameter, filterParameter] = @separateParameters(parameters)
 
     @fire('change', sortParameter, filterParameter)
+
+  parametersToAlias: (parameters)->
+    for parameter in parameters
+      if @parametersAlias[parameter.name]
+        parameter.name = @parametersAlias[parameter.name]
+    parameters
+
+  parametersFromAlias: (parameters)->
+    for parameter in parameters
+      for name, alias of @parametersAlias
+        if parameter.name == alias
+          parameter.name = name
+    parameters
 
   capitalize: (string)->
     string.charAt(0).toUpperCase() + string[1..]

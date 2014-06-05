@@ -52,7 +52,6 @@ class PTB.FiltersContainer extends PTB.DOMElement
       filter.broadcast(name, value)
 
   getFiltersState: ->
-    console.log 'GET!'
     states = []
     for filter in @filters
       if filter.active
