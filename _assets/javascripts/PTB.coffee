@@ -42,9 +42,9 @@ class PTB.Director
     @sortersContainer.on 'change', => 
       @sort()
       @route()
-    @router.on 'change', (sortState, filterState)=>
-      @sortersContainer.setSortState(sortState)
-      @filtersContainer.setFiltersState(filterState)
+    @router.on 'change', (states)=>
+      @sortersContainer.setSortState(states)
+      @filtersContainer.setFiltersState(states)
       @filter()
     @e.addEventListener 'click', @onClick.bind(@)
 
@@ -81,7 +81,9 @@ class PTB.Director
     @render()
 
   route: ->
-    @router.setState(@sortersContainer.getSortState(), @filtersContainer.getFiltersState())
+    states = @filtersContainer.getFiltersState()
+    states.push @sortersContainer.getSortState()
+    @router.setState(states)
 
   # Get /games.json through AJAX
   fetchGames: ->

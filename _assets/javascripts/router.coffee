@@ -3,6 +3,25 @@ class PTB.Router extends PTB.Eventable
 
   parametersAlias: {
     'categories': 'tags'
+    'lowerName': 'name'
+    'sortLowerName': 'sortName'
+    'sortTagsRating': 'sortTags'
+    'launchDateSince': 'launchDate'
+    'sortLaunchDateSince': 'sortLaunchDate'
+    'sortFinalPrice': 'sortPrice'
+    'finalPrice': 'price'
+    'sortAverage_time': 'sortPlaytime'
+    'average_time': 'playtime'
+    'sortAverageTimeOverPrice': 'sortPlaytimeOverBuck'
+    'averageTimeOverPrice': 'playtimeOverBuck'
+    'sortTotalReviews': 'sortReviews'
+    'totalReviews': 'reviews'
+    'sortMeta_score': 'sortMetascore'
+    'meta_score': 'metascore'
+    'sortPositiveReviewsPercentage': 'sortReviewsDistribution'
+    'positiveReviewsPercentage': 'reviewsDistribution'
+    'sortPlaytimeDeviationPercentage': 'sortPlaytimeDisparity'
+    'playtimeDeviationPercentage': 'playtimeDisparity'
   }
 
   constructor: ->
@@ -16,27 +35,8 @@ class PTB.Router extends PTB.Eventable
   initializeState: ->
     @readHash()
 
-  setState: (sortState, filtersState)->
-    hashState = filtersState || []
-    sortHashState = @generateSortParameter(sortState)
-    hashState.push sortHashState
-    @setHash(hashState)
-
-  generateSortParameter: (sortState)->
-    name: 'sort' + @capitalize(sortState.name)
-    value: if sortState.value then null else 'descending'
-
-  separateParameters: (parameters)->
-    sortParameter = {}
-
-    for parameter, i in parameters
-      if parameter.name[0..3] == 'sort'
-        sortParameter.name = @uncapitalize(parameter.name[4..])
-        sortParameter.value = (parameter.value != 'descending')
-        parameters.splice(i, 1)
-        return [sortParameter, parameters]
-
-    [sortParameter, parameters]
+  setState: (states)->
+    @setHash(states)
 
   setHash: (parameters)->
     parameters = @parametersToAlias(parameters)
@@ -56,11 +56,9 @@ class PTB.Router extends PTB.Eventable
       name: nameValue[0]
       value: if nameValue[1] then decodeURIComponent(nameValue[1]) else null
 
-    parameters = @parametersFromAlias(parameters)
+    @parametersFromAlias(parameters)
 
-    [sortParameter, filterParameter] = @separateParameters(parameters)
-
-    @fire('change', sortParameter, filterParameter)
+    @fire('change', parameters)
 
   parametersToAlias: (parameters)->
     for parameter in parameters
@@ -74,9 +72,3 @@ class PTB.Router extends PTB.Eventable
         if parameter.name == alias
           parameter.name = name
     parameters
-
-  capitalize: (string)->
-    string.charAt(0).toUpperCase() + string[1..]
-
-  uncapitalize: (string)->
-    string.charAt(0).toLowerCase() + string[1..]

@@ -59,8 +59,8 @@ class PTB.FiltersContainer extends PTB.DOMElement
     states
 
   setFiltersState: (states)->
-    console.log 'SET!'
     for state in states
       for filter in @filters
         if filter.filterValueName is state.name
+
           filter.setUrlValue state.value
