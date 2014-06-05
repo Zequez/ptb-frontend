@@ -118,7 +118,6 @@ class PTB.Filters.NumberFilter extends PTB.Filter
   parseOptionsValue: (value)-> value
   parseOptionsText: (text)-> text
 
-
   filter: (games, rejected)->
     # We need 2 arrays so we can show/hide the appropiate games without having
     # hide/show all first, or iterate through all the games to check which are rejected

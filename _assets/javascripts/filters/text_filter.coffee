@@ -13,11 +13,18 @@ class PTB.Filters.TextFilter extends PTB.Filter
     @eValue.addEventListener 'keyup', @onChange.bind(@)
 
   onChange: ->
+    @readValues()
+
+    @fire 'change', @shrinking
+
+  readValues: ->
     @oldValue = @value
     @value = @eValue.value
     @shrinking = @value[0...@oldValue.length].replace(@oldValue, '') == '' and @value != ''
+    @active = @value != ''
 
-    @fire 'change', @shrinking
+  writeValues: ->
+    @eValue.value = @value
 
   filter: (games, rejected)->
     return games if @value == ''
@@ -31,3 +38,13 @@ class PTB.Filters.TextFilter extends PTB.Filter
       else
         rejected.push game
     accepted
+
+  getUrlValue: ->
+    @value
+
+  setUrlValue: (hashValue)->
+    @value = hashValue
+    @shrinking = false
+    @oldValue = ''
+    @active = @value != ''
+    @writeValues()
