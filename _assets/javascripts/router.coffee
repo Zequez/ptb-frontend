@@ -69,6 +69,7 @@ class PTB.Router extends PTB.Eventable
     for parameterName, parameterValue of parameters
       if @parametersAlias[parameterName]
         parameters[@parametersAlias[parameterName]] = parameterValue
+        delete parameters[parameterName]
     parameters
 
   parametersToHardAlias: (parameters)->
@@ -77,8 +78,9 @@ class PTB.Router extends PTB.Eventable
   parametersFromAlias: (parameters)->
     for parameterName, parameterValue of parameters
       for name, alias of @parametersAlias
-        if name == parameterName
-          parameters[alias] = parameterValue
+        if alias == parameterName
+          parameters[name] = parameterValue
+          delete parameters[alias]
     parameters
 
   parametersFromHardAlias: (hardAlias)->
