@@ -16,13 +16,13 @@ class PTB.Routes.Mapper
     i--
 
     if matchRoute
-      @mappings[i].generateRoute()
+      @mappings[i].generateRoute(params)
     else
       @rootMapping.generateRoute(params)
 
   routeFromUrl: ->
     hash = window.location.hash.replace(/^#/, '')
-    path = window.location.pathname
+    path = window.location.pathname.replace(/\/$/, '')
     arrayStringParams = hash.split('&')
 
     params = {}

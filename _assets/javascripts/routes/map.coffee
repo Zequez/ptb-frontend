@@ -9,9 +9,7 @@ class PTB.Routes.Map
     delete routeData.title
     @params = routeData
 
-  matchParams: (queryParams)->
-    @additionalParams = {}
- 
+  matchParams: (queryParams)-> 
     count = 0
     hasParams = false
     for paramName, paramVal of @params
@@ -26,6 +24,6 @@ class PTB.Routes.Map
   generateRoute: (queryParams)->
     additionalParams = {}
     for queryParamName, queryParamValue of queryParams
-      if not @params[queryParamName]
+      if @params[queryParamName] == undefined
         additionalParams[queryParamName] = queryParamValue
     new PTB.Routes.Route @path, @params, additionalParams, @title

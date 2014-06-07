@@ -1,7 +1,7 @@
 class PTB.Routes.Router extends PTB.Eventable
   ignoreNextEvent: false
 
-  parametersAlias: {
+  parametersAlias:
     'categories': 'tags'
     'lowerName': 'name'
     'sortLowerName': 'sortName'
@@ -22,7 +22,6 @@ class PTB.Routes.Router extends PTB.Eventable
     'positiveReviewsPercentage': 'reviewsDistribution'
     'sortPlaytimeDeviationPercentage': 'sortPlaytimeDisparity'
     'playtimeDeviationPercentage': 'playtimeDisparity'
-  }
 
   routesMappingsData: PTB.Routes.mappingData
 
@@ -44,7 +43,7 @@ class PTB.Routes.Router extends PTB.Eventable
     route = @routesMappings.routeFromParams(params)
     
     @ignoreNextEvent = true
-    window.history.replaceState {}, route.title, route.path
+    window.history.replaceState {}, route.title, route.trailingSlashPath()
     window.location.hash = route.hash()
     route
 

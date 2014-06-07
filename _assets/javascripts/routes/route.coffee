@@ -12,3 +12,6 @@ class PTB.Routes.Route
       encodedVal = encodeURIComponent(paramVal).replace(/%2B/g, "+")
       paramName + (if paramVal then "=#{encodedVal}" else '')
     arrayStringParams.join('&')
+
+  trailingSlashPath: ->
+    @path.replace(/\/$/, '') + '/'
