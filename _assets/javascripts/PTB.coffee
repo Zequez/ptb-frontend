@@ -1,7 +1,7 @@
 window.PTB = {}
 
 class PTB.Director
-  gamesUrl: 'games.json'
+  gamesUrl: '/games.json'
   games: []
   filteredGames: []
 
