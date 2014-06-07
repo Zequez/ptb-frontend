@@ -5,7 +5,7 @@
 #= require eventable
 #= require elements
 #= require routes
-#= require routes/mapping_data
+#= require routes/mapping_data.js
 #= require routes/mapper
 #= require routes/map
 #= require routes/route
