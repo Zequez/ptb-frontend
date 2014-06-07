@@ -10,16 +10,21 @@ class PTB.Routes.Map
     @params = routeData
 
   matchParams: (queryParams)-> 
-    count = 0
+    paramsMatch = 0
+    paramsLength = 0
+
     hasParams = false
     for paramName, paramVal of @params
-      count++
+      paramsLength++
       hasParams = true
       for queryParamName, queryParamVal of queryParams
         if paramName == queryParamName and paramVal == queryParamVal
-          count--
+          paramsMatch++
 
-    count == 0 and hasParams
+    if paramsMatch == paramsLength
+      paramsMatch
+    else
+      0
 
   generateRoute: (queryParams)->
     additionalParams = {}

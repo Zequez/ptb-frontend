@@ -8,15 +8,24 @@ class PTB.Routes.Mapper
       @mappingsHash[routePath] = mapping
     @rootMapping = @mappingsHash['/']
 
+    for mapping in @mappings
+      if not mapping.title
+        mapping.title = @rootMapping.title
+
   routeFromParams: (params)->
     i = 0
-    while i < @mappings.length and not matchRoute
-      matchRoute = @mappings[i].matchParams(params)
-      i++
-    i--
+    maxMatches = 0
+    maxMatchesMap = null
+    for map in @mappings
+      matches = map.matchParams(params)
+      if matches > maxMatches
+        maxMatches = matches
+        maxMatchesMap = map
+      else if matches == maxMatches and matches != 0
+        console.warn 'Routes collision!', map.path, maxMatchesMap.path
 
-    if matchRoute
-      @mappings[i].generateRoute(params)
+    if maxMatchesMap
+      maxMatchesMap.generateRoute(params)
     else
       @rootMapping.generateRoute(params)
 

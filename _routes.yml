@@ -15,10 +15,10 @@ recently-launched:
   title: List of recently launched games
   launchDate: '+0d~'
 oldest-games:
-  sortLaunchDateSince: descending
+  sortLaunchDate: descending
 old-games:
-  sortLaunchDateSince: descending
-  launchDate: ~5y
+  sortLaunchDate:
+  launchDate: 5y~
 
 # Price routes
 lowest-price:
