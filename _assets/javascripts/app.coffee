@@ -4,8 +4,12 @@
 #= require PTB
 #= require eventable
 #= require elements
-#= require hardAlias
-#= require router
+#= require routes
+#= require routes/mapping_data
+#= require routes/mapper
+#= require routes/map
+#= require routes/route
+#= require routes/router
 #= require games
 #= require game
 #= require filters

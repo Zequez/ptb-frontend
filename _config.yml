@@ -8,3 +8,4 @@ assets:
   debug: true
   cachebust: hard
   gzip: false
+  cache: true

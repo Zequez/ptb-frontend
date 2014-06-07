@@ -9,6 +9,8 @@ class PTB.Director
     @e = $$('.table')
     # @autorender = document.location.hash == '#autorender'
     @gamesUrl = document.body.attributes['games-db'].value
+    @ePageTitle = $$('title')
+    @ePageSubtitle = $$('.subtitle')
     @fetchGames()
     
   parseResults: (responseText)->
@@ -31,7 +33,7 @@ class PTB.Director
     @gamesContainer = new PTB.GamesContainer @games
     @filtersContainer = new PTB.FiltersContainer
     @sortersContainer = new PTB.SortersContainer
-    @router = new PTB.Router
+    @router = new PTB.Routes.Router
     @filtersContainer.createOptions @games
     @bind()
 
@@ -42,7 +44,8 @@ class PTB.Director
     @sortersContainer.on 'change', => 
       @sort()
       @route()
-    @router.on 'change', (states)=>
+    @router.on 'change', (states, title)=>
+      @setPageTitle title
       @sortersContainer.setSortState(states)
       @filtersContainer.setFiltersState(states)
       @filter()
@@ -86,7 +89,8 @@ class PTB.Director
     for stateName, stateValue of sorterStates
       filterStates[stateName] = stateValue
 
-    @router.setState(filterStates)
+    route = @router.setState(filterStates)
+    @setPageTitle route.title
 
   # Get /games.json through AJAX
   fetchGames: ->
@@ -104,3 +108,8 @@ class PTB.Director
     if ev.target.classList.contains('tag')
       @filtersContainer.broadcast('tag', ev.target.innerHTML)
 
+  setPageTitle: (title)->
+    previousTitle = @ePageTitle.innerHTML
+    previousTitle = previousTitle.split(/\s+\-\s+/)[0]
+    @ePageTitle.innerHTML = "#{previousTitle} - #{title}"
+    @ePageSubtitle.innerHTML = title

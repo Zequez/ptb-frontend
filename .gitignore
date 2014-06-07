@@ -1,3 +1,5 @@
 /_site
 /_assets/stylesheets/bourbon
 games.json
+.jekyll-assets-cache
+.routes_cache
