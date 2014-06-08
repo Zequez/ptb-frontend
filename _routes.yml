@@ -1,7 +1,11 @@
+
+### Root route #####
+####################
 "/":
   title: "It ended up being a little more than playtime for the buck: it kind of let you discover games&trade;"
 
-# OS Routes
+### OS Routes ######
+####################
 # linux:
 #   os: linux
 # osx:
@@ -9,60 +13,169 @@
 # windows:
 #   os: windows
 
-# Launch date
+### Launch date ####
+####################
 recently-launched:
-  sortLaunchDate:
   title: List of recently launched games
+  sortLaunchDate:
   launchDate: '+0d~'
 oldest-games:
+  title: The oldest games of Steam
   sortLaunchDate: descending
 old-games:
+  title: Games older than 5 years
   sortLaunchDate:
   launchDate: 5y~
 
-# Price routes
+### Price ##########
+####################
 lowest-price:
+  title: Non-free games with the lowest prices
   sortFinalPrice:
-  finalPrice: '>0-*'
+  finalPrice: '>0~'
 most-expensive:
+  title: The most expensive games
   sortFinalPrice: descending
 free:
-  finalPrice: '*-0'
+  title: Free games
+  finalPrice: '~0'
 # sale:
 #   sale: yes
 
-# Game tags
+### Game tags ######
+####################
+strategy:
+  title: Strategy games
+  sortTagsRating:
+  tags: strategy
+fps:
+  title: "FPS [First Person Shooter] games"
+  sortTagsRating:
+  tags: fps
+action:
+  title: Action games
+  sortTagsRating:
+  tags: action
+adventure:
+  title: Adventure games
+  sortTagsRating:
+  tags: adventure
+indie:
+  title: Indie games
+  sortTagsRating:
+  tags: indie
+simulation:
+  title: Simulation games
+  sortTagsRating:
+  tags: simulation
+co-op:
+  title: Co-op games
+  sortTagsRating:
+  tags: co-op
+local-co-op:
+  title: Local Co-op games
+  sortTagsRating:
+  tags: local co-op
+moba:
+  title: Moba games
+  sortTagsRating:
+  tags: moba
+comedy:
+  title: Comedy games
+  sortTagsRating:
+  tags: comedy
+point-and-click:
+  title: "Point & click games"
+  sortTagsRating:
+  tags: point and click
+space:
+  title: Space games
+  sortTagsRating:
+  tags: space
+sci-fi:
+  title: Sci-fi games
+  sortTagsRating:
+  tags: sci-fi
+classic:
+  title: Classic games
+  sortTagsRating:
+  tags: classic 
+retro:
+  title: Retro games
+  sortTagsRating:
+  tags: retro
+city-builder:
+  title: City building games
+  sortTagsRating:
+  tags: city builder
+tycoon:
+  title: Tycoon games
+  sortTagsRating:
+  tags: tycoon
+puzzle:
+  title: Puzzle games
+  sortTagsRating:
+  tags: puzzle
+platformer:
+  title: Platformer games
+  sortTagsRating:
+  tags: platformer
+underrated:
+  title: Underrated games
+  sortTagsRating:
+  tags: underrated
+tower-defense:
+  title: Tower defense games
+  sortTagsRating:
+  tags: tower defense
+casual:
+  title: F*cking casual games
+  sortTagsRating:
+  tags: casual
 
-# "/strategy": "tags=strategy&sortTagsRating",
-# "/fps": "tags=fps&sortTagsRating",
-# "/action": "tags=action&sortTagsRating",
-# "/adventure": "tags=adventure&sortTagsRating",
-# "/indie": "tags=indie&sortTagsRating",
-# "/simulation": "tags=simulation&sortTagsRating",
-# "/co-op": "tags=co-op&sortTagsRating",
-# "/counch-co-op": "tags=couch%20co-op&sortTagsRating",
-# "/moba": "tags=moba&sortTagsRating",
-# "/comedy": "tags=comedy&sortTagsRating",
-# "/point-and-click": "tags=point-and-click&sortTagsRating",
-# "/space": "tags=space&sortTagsRating",
-# "/sci-fi": "tags=sci-fi&sortTagsRating",
-# "/classic": "tags=classic&sortTagsRating",
-# "/retro": "tags=retro&sortTagsRating",
-# "/city-builder": "tags=city%20builder&sortTagsRating",
-# "/tycoon": "tags=tycoon&sortTagsRating",
-# "/puzzle": "tags=puzzle&sortTagsRating",
-# "/platformer": "tags=platformer&sortTagsRating",
-# "/underrated": "tags=underrated&sortTagsRating",
-# "/tower-defense": "tags=tower%20defense&sortTagsRating",
+### Reviews ########
+####################
+most-reviews:
+  title: Games with a lot of reviews
+  sortReviews: descending
+best-reviews:
+  title: Games with the best reviews
+  sortReviewsDistribution: descending
+  reviews: 50~
+worse-reviews:
+  title: Games with the worse reviews
+  sortReviewsDistribution: ascending
+  reviews: 50~
+good-reviews:
+  title: Games with good reviews
+  sortReviewsDistribution: descending
+  reviewsDistribution: 90
+  reviews: 100~
 
-# "/technically-underrated": "totalReviews=50-200&sortPositiveReviewsPercentage=descending",
+### The rest #######
+####################
+low-playtime-disparity:
+  title: Games with the lowest playtime disparity
+  sortPlaytimeDisparity:
+  reviews: 10~
+most-playtime:
+  title: Games with the highest amount of playing time
+  sortPlaytime: descending
+best-metascore:
+  title: Games with the best metascore
+  sortMetascore: descending
+worse-metascore:
+  title: Games with the worse metascore
+  sortMetascore:
+  metascore: 0~
 
-# "/most-reviews": "sortTotalReviews=descending",
-# "/best-reviews": "sortPositiveReviewsPercentage=descending",
+# technically-underrated:
+#   title: Technically underrated games
+#   sortPositiveReviewsPercentage: descending
+#   totalReviews: 50~200
 
-# "/good-reviews": "sortPositiveReviewsPercentage=descending&positiveReviewsPercentage=90&totalReviews=100-*",
-# "/low-playtime-disparity": "sortPlaytimeDeviationPercentage&totalReviews=10-*",
-# "/most-playtime": "sortAverage_time=descending",
-# "/best-metascore": "sortMeta_score=descending",
-# "/lowest-hardware-requirements": "sortHardware_requirements_index=descending",
-# "/highest-hardware-requirements": "sortHardware_requirements_index",
+# lowest-hardware-requirements:
+#   sortHardwareRequirements: 
+
+# highest-hardware-requirements:
+#   sortHardwareRequirements: descending
