@@ -8,7 +8,7 @@ class PTB.Director
   constructor: ->
     @e = $$('.table')
     @autorender = document.location.hash != ''
-    @gamesUrl = document.body.attributes['games-db'].value
+    @gamesUrl = '/' + document.body.attributes['games-db'].value
     @ePageTitle = $$('title')
     @ePageSubtitle = $$('.subtitle')
     @fetchGames()
