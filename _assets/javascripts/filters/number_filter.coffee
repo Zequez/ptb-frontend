@@ -167,8 +167,12 @@ class PTB.Filters.NumberFilter extends PTB.Filter
   applyPlaceholder: ->
     if @eValueStart.value == ''
       @eStartPlaceholder.selected = true
-    @eValueStart.classList.toggle('placeholdered', @eValueStart.value == '')
+
+    method = if @eValueStart.value == '' then 'add' else 'remove'
+    @eValueStart.classList[method]('placeholdered')
 
     if @eValueEnd.value == ''
       @eEndPlaceholder.selected = true
-    @eValueEnd.classList.toggle('placeholdered', @eValueEnd.value == '')
+      
+    method = if @eValueEnd.value == '' then 'add' else 'remove'
+    @eValueEnd.classList[method]('placeholdered')

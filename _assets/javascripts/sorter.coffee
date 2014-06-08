@@ -89,8 +89,12 @@ class PTB.Sorter extends PTB.DOMElement
     @fire 'change', @
 
   drawDirection: ->
-    @e.classList.toggle 'ascending', @ascending and @enabled
-    @e.classList.toggle 'descending', !@ascending and @enabled
+    # "Hey! Why not just use classList.toggle(token, FORCE)"
+    # Some fucking browsers, like PhantomJS don't support the force option
+    method = if @ascending and @enabled then 'add' else 'remove'
+    @e.classList[method]('ascending')
+    method = if !@ascending and @enabled then 'add' else 'remove'
+    @e.classList[method]('descending')
 
   reset: ->
     @enabled = false
