@@ -46,91 +46,91 @@ free:
 ####################
 strategy:
   title: Strategy games
-  sortTagsRating:
+  sortTags:
   tags: strategy
 fps:
   title: "FPS [First Person Shooter] games"
-  sortTagsRating:
+  sortTags:
   tags: fps
 action:
   title: Action games
-  sortTagsRating:
+  sortTags:
   tags: action
 adventure:
   title: Adventure games
-  sortTagsRating:
+  sortTags:
   tags: adventure
 indie:
   title: Indie games
-  sortTagsRating:
+  sortTags:
   tags: indie
 simulation:
   title: Simulation games
-  sortTagsRating:
+  sortTags:
   tags: simulation
 co-op:
   title: Co-op games
-  sortTagsRating:
+  sortTags:
   tags: co-op
 local-co-op:
   title: Local Co-op games
-  sortTagsRating:
+  sortTags:
   tags: local co-op
 moba:
   title: Moba games
-  sortTagsRating:
+  sortTags:
   tags: moba
 comedy:
   title: Comedy games
-  sortTagsRating:
+  sortTags:
   tags: comedy
 point-and-click:
   title: "Point & click games"
-  sortTagsRating:
+  sortTags:
   tags: point and click
 space:
   title: Space games
-  sortTagsRating:
+  sortTags:
   tags: space
 sci-fi:
   title: Sci-fi games
-  sortTagsRating:
+  sortTags:
   tags: sci-fi
 classic:
   title: Classic games
-  sortTagsRating:
+  sortTags:
   tags: classic 
 retro:
   title: Retro games
-  sortTagsRating:
+  sortTags:
   tags: retro
 city-builder:
   title: City building games
-  sortTagsRating:
+  sortTags:
   tags: city builder
 tycoon:
   title: Tycoon games
-  sortTagsRating:
+  sortTags:
   tags: tycoon
 puzzle:
   title: Puzzle games
-  sortTagsRating:
+  sortTags:
   tags: puzzle
 platformer:
   title: Platformer games
-  sortTagsRating:
+  sortTags:
   tags: platformer
 underrated:
   title: Underrated games
-  sortTagsRating:
+  sortTags:
   tags: underrated
 tower-defense:
   title: Tower defense games
-  sortTagsRating:
+  sortTags:
   tags: tower defense
 casual:
   title: F*cking casual games
-  sortTagsRating:
+  sortTags:
   tags: casual
 
 ### Reviews ########
