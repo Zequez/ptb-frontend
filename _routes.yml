@@ -2,12 +2,12 @@
   title: "It ended up being a little more than playtime for the buck: it kind of let you discover games&trade;"
 
 # OS Routes
-linux:
-  os: linux
-osx:
-  os: osx
-windows:
-  os: windows
+# linux:
+#   os: linux
+# osx:
+#   os: osx
+# windows:
+#   os: windows
 
 # Launch date
 recently-launched:
@@ -28,8 +28,8 @@ most-expensive:
   sortFinalPrice: descending
 free:
   finalPrice: '*-0'
-sale:
-  sale: yes
+# sale:
+#   sale: yes
 
 # Game tags
 

@@ -83,6 +83,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
     @insertOptions()
 
   insertOptions: ->
+    console.log @eValueStart.innerHTML
     for option in @options
       @insertOption(option)
 

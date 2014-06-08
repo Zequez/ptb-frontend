@@ -8,7 +8,9 @@ class PTB.Filter extends PTB.TemplateElement
     # for the select elements to aquire 50% width of the
     # table cell without setting the width of the table cell
     @e.style.width = @e.offsetWidth + 'px'
+
     super
+
     @filterValueName = @e.attributes.filter.value
     
 

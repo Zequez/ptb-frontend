@@ -24,9 +24,7 @@ class PTB.Director
     @filteredGames = @games
     @buildContainers()
     
-    if @autorender
-      @router.initializeState()
-      @render()
+    @router.initializeState()
 
   buildContainers: ->
     @gamesContainer = new PTB.GamesContainer @games
@@ -47,7 +45,8 @@ class PTB.Director
       @setPageTitle title
       @sortersContainer.setSortState(states)
       @filtersContainer.setFiltersState(states)
-      @filter()
+      @filter() if @autorender
+      @autorender = true
     @e.addEventListener 'click', @onClick.bind(@)
 
   render: ->
