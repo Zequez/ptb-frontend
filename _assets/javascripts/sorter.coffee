@@ -29,7 +29,7 @@ class PTB.SortersContainer extends PTB.DOMElement
 
   readStatusQuo: ->
     for sorter in @sorters
-      if sorter.ascending?
+      if sorter.enabled?
         @activeSorter = sorter
         return
 
@@ -66,7 +66,8 @@ class PTB.SortersContainer extends PTB.DOMElement
 
 
 class PTB.Sorter extends PTB.DOMElement
-  ascending: null
+  ascending: false
+  enabled: false
 
   constructor: (@e)->
     @sortValueName = @e.attributes.sort.value
@@ -77,23 +78,22 @@ class PTB.Sorter extends PTB.DOMElement
     @e.addEventListener 'click', => @changeDirection() 
 
   setAscending: (ascending)->
+    @enabled = ascending?
     @ascending = ascending == true
-    @descending = ascending == false
     @drawDirection()
 
   changeDirection: ->
+    @enabled = true
     @ascending = !@ascending
     @drawDirection()
     @fire 'change', @
 
   drawDirection: ->
-    ascending = @ascending == true
-    descending = @ascending == false
-    @e.classList.toggle 'ascending', ascending
-    @e.classList.toggle 'descending', descending
+    @e.classList.toggle 'ascending', @ascending and @enabled
+    @e.classList.toggle 'descending', !@ascending and @enabled
 
   reset: ->
-    @ascending = null
+    @enabled = false
     @drawDirection()
 
   sort: (games)->
@@ -129,6 +129,11 @@ class PTB.Sorter extends PTB.DOMElement
   readStatusQuo: ->
     startAscending = @e.classList.contains 'ascending'
     startDescending = @e.classList.contains 'descending'
-    if startAscending == true or startDescending == true
-      @ascending = startAscending
-      @descending = startDescending
+    if startAscending
+      @ascending = true
+      @enabled = true
+    else if startDescending
+      @ascending = false
+      @enabled = true
+    else
+      @enabled = false

@@ -32,7 +32,7 @@ class PTB.Filters.NumberFilter extends PTB.Filter
   setUrlValue: (hashValue)->
     [start, end] = hashValue.replace(/\+/g, '>').split(/~/)
 
-    if end == null or @parseOptionsValue(start) == false or @parseOptionsValue(end) == false
+    if not end? or @parseOptionsValue(start) == false or @parseOptionsValue(end) == false
       return
 
     foundStart = false
