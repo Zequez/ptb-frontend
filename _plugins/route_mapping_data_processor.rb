@@ -2,7 +2,7 @@ require 'json'
 
 class RouteMappingDataProcessor < Sprockets::Processor
   def initialize(*args)
-    @routes_input = File.expand_path('_routes.yml')
+    @routes_input = File.join(File.dirname(__FILE__), '../_routes.yml')
     super
   end
 

@@ -7,7 +7,7 @@ class PTB.Director
 
   constructor: ->
     @e = $$('.table')
-    # @autorender = document.location.hash == '#autorender'
+    @autorender = document.location.hash != ''
     @gamesUrl = document.body.attributes['games-db'].value
     @ePageTitle = $$('title')
     @ePageSubtitle = $$('.subtitle')
@@ -24,10 +24,9 @@ class PTB.Director
     @filteredGames = @games
     @buildContainers()
     
-    if document.location.hash != ''
+    if @autorender
       @router.initializeState()
-    # if @autorender
-    #   @render()
+      @render()
 
   buildContainers: ->
     @gamesContainer = new PTB.GamesContainer @games

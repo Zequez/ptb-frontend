@@ -3,7 +3,7 @@ require 'json'
 module Jekyll
   class RoutesGenerator < Generator
     def generate(site)
-      routes_input = File.expand_path('_routes.yml')
+      routes_input = File.join(site.source, '_routes.yml')
       routes = YAML.load_file routes_input
 
       index_page = site.pages.detect{|p| p.name == 'index.html'}
