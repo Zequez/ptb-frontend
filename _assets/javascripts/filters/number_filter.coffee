@@ -31,6 +31,10 @@ class PTB.Filters.NumberFilter extends PTB.Filter
 
   setUrlValue: (hashValue)->
     [start, end] = hashValue.replace(/\+/g, '>').split(/~/)
+
+    if end == null or @parseOptionsValue(start) == false or @parseOptionsValue(end) == false
+      return
+
     foundStart = false
     foundEnd = false
     for option in @options
@@ -83,14 +87,14 @@ class PTB.Filters.NumberFilter extends PTB.Filter
     @insertOptions()
 
   insertOptions: ->
-    console.log @eValueStart.innerHTML
     for option in @options
       @insertOption(option)
 
   insertOption: (option)->
     option.eStart = document.createElement('option')
     option.eStart.value = option.value
-    option.eStart.innerHTML = option.label
+    textNode = document.createTextNode(option.label)
+    option.eStart.appendChild textNode
     @eValueStart.appendChild option.eStart
     if not /\>/.test option.value
       option.eEnd = option.eStart.cloneNode(true)

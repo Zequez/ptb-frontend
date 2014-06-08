@@ -11,6 +11,8 @@ class PTB.Filters.DateFilter extends PTB.Filters.NumberFilter
   parseOptionsValue: (value)->
     open = />/.test value
     matchResult = value.match(/([0-9]+)([a-z]+)/i)
+    return '0' if value == ''
+    return false unless matchResult
     numericValue = matchResult[1]
     timeConstant = matchResult[2]
     timeMultiplier = @timeMultipliers[timeConstant]
