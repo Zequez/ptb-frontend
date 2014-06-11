@@ -33,7 +33,7 @@
   <td class="hidden"><%=negative_reviews_length %><%= (negative_reviews_length >= 1000) ? '+' : '' %></td>
   <td><%=totalReviews %><%= (totalReviews >= 1000) ? '+' : '' %></td>
   <td><%=(meta_score !== null) ? meta_score : '-' %></td>
-  <td class="reviews-distribution-cell">
+  <td class="reviews-distribution-cell" title="<%=positiveReviewsPercentage%>%">
     <% if(positiveReviewsPercentage !== null) { %>
     <div class="reviews-distribution">
       <div class="positive-reviews-percentage" style="width: <%=positiveReviewsPercentage%>%"></div>
