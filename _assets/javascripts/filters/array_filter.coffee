@@ -1,12 +1,27 @@
 class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
   name: 'array-filter'
 
+  getUrlValue: ->
+    value = @cleanValue().join('/')
+    console.log value
+    value
+
+  setUrlValue: (hashValue)->
+    @value = hashValue.replace(/\//g, ', ')
+    @shrinking = false
+    @oldValue = ''
+    @active = @value != ''
+    @writeValues()
+
+  cleanValue: ->
+    @value.replace(/[^a-z0-9 \-&,]/ig, ' ').replace(/^\s+|\s+$/, '').split(/\s*,\s*/ig)
+
   # It filters AND orders
   filter: (games, rejected)->
     accepted = []
     accepted_array = []
 
-    tags = @value.replace(/[^a-z0-9 \-&]/ig, ' ').replace(/-/g, '\\-').replace(/^\s+|\s+$/, '').split(/\s*,\s*/ig)
+    tags = @cleanValue()
     for tag, i in tags
       if tag == ''
         tags.splice(i, 1)
@@ -16,7 +31,7 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
       game.unhighlightTags() for game in games
       return games
 
-    tags_regex = tags.map((tag)-> new RegExp("^" + tag, 'i'))
+    tags_regex = tags.map((tag)-> new RegExp("^" + tag.replace(/-/g, '\\-'), 'i'))
 
     for game in games
       matches = 0

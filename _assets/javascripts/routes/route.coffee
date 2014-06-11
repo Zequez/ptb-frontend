@@ -9,7 +9,7 @@ class PTB.Routes.Route
 
   hash: ->
     arrayStringParams = for paramName, paramVal of @searchParams
-      encodedVal = encodeURIComponent(paramVal).replace(/%2B/g, "+")
+      encodedVal = encodeURIComponent(paramVal).replace(/%20/g, "+").replace(/%2F/g, '/')
       paramName + (if paramVal then "=#{encodedVal}" else '')
     arrayStringParams.join('&')
 
