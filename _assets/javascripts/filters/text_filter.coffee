@@ -1,4 +1,4 @@
-class PTB.Filters.TextFilter extends PTB.Filter
+class PTB.Filters.TextFilter extends PTB.Filters.BaseFilter
   name: 'text-filter'
 
   value: ''

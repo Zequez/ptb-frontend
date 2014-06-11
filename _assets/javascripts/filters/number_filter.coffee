@@ -1,4 +1,4 @@
-class PTB.Filters.NumberFilter extends PTB.Filter
+class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
   name: 'number-filter'
   options: []
 

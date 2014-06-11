@@ -43,4 +43,11 @@
   <td class="centiles">
     <%=(playtimeDeviationPercentage !== null) ? playtimeDeviationPercentage : '-'%>
   </td>
+  <td>
+    <% for(flagName in osFlagsList) { %>
+      <span class="flag flag-<%=flagName%> <% if(! (osFlagsList[flagName] & os)) {%> disabled <% } %>">
+        <%=flagName%>
+      </span>
+    <% } %>
+  </td>
 </tr>

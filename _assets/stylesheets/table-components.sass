@@ -47,3 +47,28 @@ tr:nth-of-type(odd) td .column-cropper
   cursor: pointer
   &.highlighted
     background-color: #AD6767
+
+.filter-flag-input
+  display: none
+  &:checked + .filter-flag
+    opacity: 1
+
+.filter-flag
+  opacity: 0.25
+
+.flag, .filter-flag
+  display: inline-block
+  overflow: hidden
+  width: 20px
+  height: 20px
+  background-size: 20px 20px
+  background-repeat: no-repeat
+  text-indent: -9999px
+
+  &.disabled
+    opacity: 0.25
+
+  $flagsList: win mac linux
+  @each $flag in $flagsList
+    &.flag-#{$flag}, &.filter-flag-#{$flag}
+      background-image: url(asset-path("flags/#{$flag}.png"))
