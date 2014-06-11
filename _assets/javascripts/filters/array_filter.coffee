@@ -2,19 +2,18 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
   name: 'array-filter'
 
   getUrlValue: ->
-    value = @cleanValue().join('/')
-    console.log value
-    value
+    @cleanValue().join('/').replace(/\s+/g, '+')
 
   setUrlValue: (hashValue)->
-    @value = hashValue.replace(/\//g, ', ')
+    return if not hashValue
+    @value = hashValue.replace(/\//g, ', ').replace(/\+/g, ' ')
     @shrinking = false
     @oldValue = ''
     @active = @value != ''
     @writeValues()
 
   cleanValue: ->
-    @value.replace(/[^a-z0-9 \-&,]/ig, ' ').replace(/^\s+|\s+$/, '').split(/\s*,\s*/ig)
+    @value.replace(/[^a-z0-9 \-&,]/ig, ' ').replace(/^\s+,?|,?\s+$/, '').split(/\s*,\s*/ig)
 
   # It filters AND orders
   filter: (games, rejected)->
@@ -53,8 +52,9 @@ class PTB.Filters.ArrayFilter extends PTB.Filters.TextFilter
     accepted_array.reverse()
 
     for accepted_group in accepted_array
-      for accepted_game in accepted_group
-        accepted.push accepted_game
+      if accepted_group
+        for accepted_game in accepted_group
+          accepted.push accepted_game
 
     accepted
 

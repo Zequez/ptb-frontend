@@ -37,7 +37,7 @@ class PTB.Routes.Mapper
     params = {}
     for stringParam in arrayStringParams
       nameVal = stringParam.split(/\=/)
-      params[nameVal[0]] = (if nameVal[1] then decodeURIComponent(nameVal[1]) else null)
+      params[nameVal[0]] = (if nameVal[1] then decodeURIComponent(nameVal[1]).replace(/\+/g, ' ') else null)
 
     mapping = @mappingsHash[path] || @rootMapping
     route = mapping.generateRoute(params)
