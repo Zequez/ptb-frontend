@@ -126,7 +126,7 @@ class PTB.Sorter extends PTB.DOMElement
         #   answer*-1
         # else
         #   0
-        a.attributes.steam_app_id - b.attributes.steam_app_id
+        a.attributes.steamAppId - b.attributes.steamAppId
     null
 
 

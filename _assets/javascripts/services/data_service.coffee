@@ -9,7 +9,7 @@ class PTB.Services.DataService
     @dataUrl = '/' + document.body.attributes['games-db'].value
 
   games: (cb)-> @_getData(cb, 'games')
-  osFlags: (cb)-> @_getData(cb, 'os_flags')
+  osFlags: (cb)-> @_getData(cb, 'osFlags')
   flags: (cb)-> @_getData(cb, 'flags')
   tags: (cb)-> @_getData(cb, 'tags')
   all: (cb)-> @_getData(cb, '')

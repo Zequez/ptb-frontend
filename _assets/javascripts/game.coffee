@@ -16,34 +16,34 @@ class PTB.Game extends PTB.Eventable
 
     # All of this could be calculated on the scrapper when saving the data for the client
     # that way we would have to process less when loading the page
-    if @attributes.launch_date
-      @attributes.launchDateSince = @dateNow - @attributes.launch_date
-      @attributes.launchDateSinceText = timeSince(new Date(@attributes.launch_date))
+    if @attributes.launchDate
+      @attributes.launchDateSince = @dateNow - @attributes.launchDate
+      @attributes.launchDateSinceText = timeSince(new Date(@attributes.launchDate))
     else 
       @attributes.launchDateSince = null
       @attributes.launchDateSinceText = null
 
     # @attributes.gameUpdatedAtSince = if @attributes.gameUpdatedAtSince
-    # then timeSince(new Date(@attributes.game_updated_at))
+    # then timeSince(new Date(@attributes.gameUpdatedAt))
     # else null
 
-    @attributes.totalReviews = @attributes.positive_reviews_length + @attributes.negative_reviews_length
+    @attributes.totalReviews = @attributes.positiveReviewsLength + @attributes.negativeReviewsLength
 
     @attributes.price = 0 if not @attributes.price? # TODO: Fix this on the Ruby scrapper
 
-    @attributes.finalPrice = if @attributes.sale_price? then @attributes.sale_price else @attributes.price
-    if @attributes.finalPrice == 0 or @attributes.finalPrice == null or @attributes.average_time == null
+    @attributes.finalPrice = if @attributes.salePrice? then @attributes.salePrice else @attributes.price
+    if @attributes.finalPrice == 0 or @attributes.finalPrice == null or @attributes.averageTime == null
       @attributes.averageTimeOverPrice = null
     else
-      @attributes.averageTimeOverPrice = Math.round((@attributes.average_time / @attributes.finalPrice) * 100) / 100
+      @attributes.averageTimeOverPrice = Math.round((@attributes.averageTime / @attributes.finalPrice) * 100) / 100
 
-    if @attributes.playtime_deviation?
-      @attributes.playtimeDeviationPercentage = Math.floor((@attributes.playtime_deviation / @attributes.average_time - 1) * 100) / 100
+    if @attributes.playtimeDeviation?
+      @attributes.playtimeDeviationPercentage = Math.floor((@attributes.playtimeDeviation / @attributes.averageTime - 1) * 100) / 100
     else
       @attributes.playtimeDeviationPercentage = null
 
     if @attributes.totalReviews > 0
-      @attributes.positiveReviewsPercentage = Math.floor(@attributes.positive_reviews_length/@attributes.totalReviews*10000)/100
+      @attributes.positiveReviewsPercentage = Math.floor(@attributes.positiveReviewsLength/@attributes.totalReviews*10000)/100
     else
       @attributes.positiveReviewsPercentage = null
 
