@@ -32,6 +32,8 @@
 
 #= require sorter
 
+#= require tooltipler
+
 #= require_self
 #= require little_scripts
 

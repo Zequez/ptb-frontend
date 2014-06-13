@@ -12,8 +12,13 @@ class PTB.PageCtrl
 
     @autorender = document.location.hash != ''
 
+    @build()
+
     @dataService.all (data)=>
       @parseResults(data)
+
+  build: ->
+    @tooltipler = new PTB.Tooltipler
 
   parseResults: (data)->
     console.time 'Build time'

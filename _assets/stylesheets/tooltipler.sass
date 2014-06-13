@@ -1,0 +1,28 @@
+.tooltipler
+  $arrowSize: 8px
+  $background: rgba(#000, 0.85)
+
+  display: none
+  position: absolute
+  top: 0px
+  left: 0px
+  padding: 5px
+  z-index: 9999
+  border-radius: 2px
+  background-color: $background
+  color: $invertedFontColor
+  white-space: nowrap
+
+  .tooltip-tip
+    content: ' '
+    position: absolute
+    left: 50%
+    top: -$arrowSize * 2
+    margin-left: -$arrowSize
+    width: 0px
+    height: 0px
+    border: transparent solid $arrowSize
+      bottom-color: $background
+
+  &.visible
+    display: block
