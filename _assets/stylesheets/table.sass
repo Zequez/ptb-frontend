@@ -1,6 +1,7 @@
-$tdPaddingV: 5px
-$tdPaddingH: 8px
+$tdPaddingV: 4px
+$tdPaddingH: 6px
 $tdLineHeight: 20px
+$tdHeight: 28px
 $borderWidth: 1px
 $borderRadius: 5px
 
@@ -11,6 +12,7 @@ $borderRadius: 5px
   border-spacing: 0px
   background-color: $tableColor
   white-space: nowrap
+  font-size: 14px
 
   thead
     background-color: $tableHeaderColor
@@ -54,13 +56,15 @@ $borderRadius: 5px
   //  & > td:last-child
   //    border-bottom-right-radius: $borderRadius
 
-  td
-    padding: $tdPaddingV $tdPaddingH ($tdPaddingV - 1) $tdPaddingH
+  td, th
+    height: $tdHeight
+    padding: 0 $tdPaddingH
     line-height: $tdLineHeight
+    vertical-align: middle
 
 
   .header-titles th
-    padding: 8px
+    height: $tdHeight*1.25
     cursor: pointer
     &:after
       // content: ' ▲'
@@ -77,4 +81,4 @@ $borderRadius: 5px
       content: ' ▼'
 
   .header-filters th
-    padding: 8px
+    padding: $tdPaddingH

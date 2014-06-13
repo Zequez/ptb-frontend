@@ -1,14 +1,12 @@
 td.cropped-column
-  padding: 0px
+  padding-right: 0px
   min-width: 250px
-  vertical-align: top
   &.tags-cell
-    .column-cropper
-      left: $tdPaddingV
+    padding-left: ($tdHeight - $tdLineHeight) / 2
 .column-cropper-wrapper
   position: relative
   width: 100%
-  height: 28px
+  height: $tdLineHeight
   overflow: hidden
 
   &:hover
@@ -16,9 +14,9 @@ td.cropped-column
     z-index: 999
 .column-cropper
   position: absolute
-  top: $tdPaddingV
-  bottom: $tdPaddingV
-  left: $tdPaddingH
+  top: 0px
+  bottom: 0px
+  left: 0px
   background-color: $tableColor
 tr:nth-of-type(odd) td .column-cropper
   background-color: #CECECE
@@ -55,6 +53,7 @@ tr:nth-of-type(odd) td .column-cropper
 
 .filter-flag
   opacity: 0.25
+  vertical-align: middle
 
 .flag, .filter-flag
   display: inline-block
