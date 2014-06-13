@@ -61,14 +61,15 @@ tr:nth-of-type(odd) td .column-cropper
   overflow: hidden
   width: 20px
   height: 20px
-  background-size: 20px 20px
+  background-size: 20px
+  background-position: center
   background-repeat: no-repeat
   text-indent: -9999px
 
   &.disabled
     opacity: 0.25
 
-  $flagsList: win mac linux
+  $flagsList: win mac linux achievements captions cards commentary controller leaderboards levelEditor multiPlayer partialController stats vac vr workshop cloud coOp singlePlayer
   @each $flag in $flagsList
     &.flag-#{$flag}, &.filter-flag-#{$flag}
       background-image: url(asset-path("flags/#{$flag}.png"))

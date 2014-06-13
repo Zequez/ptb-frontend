@@ -44,6 +44,13 @@
     <%=(playtimeDeviationPercentage !== null) ? playtimeDeviationPercentage : '-'%>
   </td>
   <td>
+    <% for(flagName in featuresFlagsList) { %>
+      <span class="flag flag-<%=flagName%> <% if(! (featuresFlagsList[flagName] & features)) {%> disabled <% } %>">
+        <%=flagName%>
+      </span>
+    <% } %>
+  </td>
+  <td>
     <% for(flagName in osFlagsList) { %>
       <span class="flag flag-<%=flagName%> <% if(! (osFlagsList[flagName] & os)) {%> disabled <% } %>">
         <%=flagName%>

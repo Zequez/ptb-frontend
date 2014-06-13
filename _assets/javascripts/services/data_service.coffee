@@ -10,7 +10,7 @@ class PTB.Services.DataService
 
   games: (cb)-> @_getData(cb, 'games')
   osFlags: (cb)-> @_getData(cb, 'osFlags')
-  flags: (cb)-> @_getData(cb, 'flags')
+  featuresFlags: (cb)-> @_getData(cb, 'featuresFlags')
   tags: (cb)-> @_getData(cb, 'tags')
   all: (cb)-> @_getData(cb, '')
 

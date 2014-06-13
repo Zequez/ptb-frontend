@@ -21,6 +21,7 @@ class PTB.PageCtrl
     for gameAttr in data.games
       gameAttr.flagsList = data.flags
       gameAttr.osFlagsList = data.osFlags
+      gameAttr.featuresFlagsList = data.featuresFlags
       @games.push(new PTB.Game(gameAttr))
     @filteredGames = @games
     @buildContainers()
