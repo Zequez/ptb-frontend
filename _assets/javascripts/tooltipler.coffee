@@ -39,7 +39,10 @@ class PTB.Tooltipler
 
       @transform @eTip, (-offScreenAdjust)
       @transform @e, (@mousePosX - midway + offScreenAdjust), (@mousePosY + 25)
-      
+
+  setThePositionToTheTopLeftSoTheFuckerDoesntGlitchTheBodyOverflowOnChrome: ->
+    @transform @e, 0, 0
+
   title: (el)->
     el = el.parentElement while not el.title and not el.tooltipler and el.parentElement
     if el.title
@@ -49,6 +52,7 @@ class PTB.Tooltipler
 
   toggle: (title)->
     if title
+      @setThePositionToTheTopLeftSoTheFuckerDoesntGlitchTheBodyOverflowOnChrome()
       title = title.replace(String.fromCharCode(13), '<br/>')
       console.log title, title.length
       @eTitle.innerHTML = title
