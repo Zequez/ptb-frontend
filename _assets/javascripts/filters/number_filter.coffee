@@ -23,7 +23,7 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
   readValues: ->
     @valueStart = @parseValue @eValueStart.value
     @valueEnd = @parseValue @eValueEnd.value
-    @active = @valueStart.selected || @valueEnd.selected
+    @setActive @valueStart.selected, @valueEnd.selected
 
   writeValues: ->
     @eValueStart.value = @valueStart.raw
@@ -58,7 +58,7 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
       @insertOption option
       @valueEnd = @parseValue option.value
 
-    @active = @valueStart.selected || @valueEnd.selected
+    @active = @setActive @valueStart.selected, @valueEnd.selected
     @writeValues()
 
   getUrlValue: ->
@@ -177,3 +177,18 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
       
     method = if @eValueEnd.value == '' then 'add' else 'remove'
     @eValueEnd.classList[method]('placeholdered')
+
+  setActive: (activeStart, activeEnd)->
+    @active = activeStart || activeEnd
+
+    if activeStart
+      @eValueStart.classList.add 'active'
+    else
+      @eValueStart.classList.remove 'active'
+
+    if activeEnd
+      @eValueEnd.classList.add 'active'
+    else
+      @eValueEnd.classList.remove 'active'
+
+    null

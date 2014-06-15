@@ -1,17 +1,17 @@
-.number-filter-value-start, .number-filter-value-end
-  &.placeholdered
-    color: #999
-    option
-      color: initial
+// $activeFilterBackground: #FFCB9B
+$activeFilterBackground: #2A4046
 
 .header-filters
-  input, select
+  .input
     border: solid 1px rgba(#000, 0.1)
     padding: 5px
-  input[type=text]
+    &.active
+      background-color: $activeFilterBackground
+      color: white
+  .input-text
     border-radius: 2px
     width: 100%
-  select
+  .input-select
     +appearance(none)
     text-indent: 0.01px // Workaround for -moz-appearance not working
     text-overflow: '' // Workaround for -moz-appearance not working
@@ -19,11 +19,19 @@
       display: none
     min-width: 30px 
     width: 50%
-    background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAFAQMAAACzVGSbAAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAABBJREFUCNdj+AeENQwWDAIAEw4Cwe+JLUQAAAAASUVORK5CYII=) top right no-repeat
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAFAQMAAACzVGSbAAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAABBJREFUCNdj+AeENQwWDAIAEw4Cwe+JLUQAAAAASUVORK5CYII=)
     background-position: top 2px right 2px
+    background-repeat: no-repeat
 
-    &:first-child
+    &.placeholdered
+      color: #999
+
+    &.number-filter-value-start
       border-radius: 2px 0px 0px 2px
       border-right: none
-    &:last-child
+    &.number-filter-value-end
       border-radius: 0px 2px 2px 0px
+
+    option
+      color: black
+      background: white

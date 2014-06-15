@@ -1,6 +1,6 @@
 <% for (flagName in flagsList) { %>
   <input type="checkbox" id="flag-<%=flagName %>"
-         class="filter-flag-input filter-flag-input-<%=flagName%>"
+         class="filter-flag-input filter-flag-input-<%=flagName%> input input-checkbox"
          title="<%=flagsMessages[flagName] %>" 
          value="<%=flagsList[flagName] %>"/>
   <label class="flag filter-flag flag-<%=flagName %>"
