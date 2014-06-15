@@ -28,6 +28,7 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
   writeValues: ->
     @eValueStart.value = @valueStart.raw
     @eValueEnd.value = @valueEnd.raw
+    @applyPlaceholder()
 
   setUrlValue: (hashValue)->
     [start, end] = hashValue.replace(/\+/g, '>').split(/~/)
