@@ -1,34 +1,12 @@
 class PTB.Filters.FlagsFilter extends PTB.Filters.BaseFilter
   name: 'flags-filter'
 
-  # TODO: Move all the messages to a I18n service or something
-  flagsMessages:  {
-    win: 'Windows',
-    mac: 'Mac OSX',
-    linux: 'Linux',
-    singlePlayer: 'Single Player',
-    multiPlayer: 'Multiplayer',
-    coOp: 'Co-op',
-    achievements: 'Achievements',
-    cloud: 'Steam cloud',
-    cards: 'Steam cards',
-    controller: 'Controller support',
-    partialController: 'Partial controller support',
-    stats: 'Stats',
-    workshop: 'Steam Workshop',
-    captions: 'Closed Captions',
-    commentary: 'Commentaries',
-    levelEditor: 'Level editor',
-    vac: 'Valve Anti-Cheat',
-    vr: 'Virtual Reality support',
-    leaderboards: 'Steam leaderboards'
-  }
-
   constructor: (@e)->
     @dataService = PTB.Services.inject('DataService')
+    @i18n = PTB.Services.inject('I18n')
     @readOptions()
     @attributes = {}
-    @attributes.flagsMessages = @flagsMessages
+    @attributes.flagsMessages = @i18n.t 'flags'
     @dataService[@flagsListDataName] (flagsList)=>
       @flagsList = @attributes.flagsList = flagsList
       super(@e)

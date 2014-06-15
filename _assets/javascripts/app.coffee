@@ -11,6 +11,7 @@
 #= require eventable
 #= require elements
 #= require services/data_service
+#= require services/i18n
 
 #= require routes/mapping_data.js
 #= require routes/mapper

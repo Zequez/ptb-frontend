@@ -9,6 +9,7 @@ class PTB.PageCtrl
     @ePageSubtitle = $$('.subtitle')
 
     @dataService = PTB.Services.inject 'DataService' # Make-believe dependency injection
+    @i18n = PTB.Services.inject('I18n')
 
     @autorender = document.location.hash != ''
 
@@ -27,6 +28,7 @@ class PTB.PageCtrl
       gameAttr.flagsList = data.flags
       gameAttr.osFlagsList = data.osFlags
       gameAttr.featuresFlagsList = data.featuresFlags
+      gameAttr.flagsLabels = @i18n.t 'flags'
       @games.push(new PTB.Game(gameAttr))
     @filteredGames = @games
     @buildContainers()
