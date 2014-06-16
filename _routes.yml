@@ -18,11 +18,11 @@
 ####################
 recently-launched:
   title: List of recently launched games
-  sortLaunchDate:
+  sort: launchDate 
   launchDate: '+0d~'
 oldest-games:
   title: The oldest games of Steam
-  sortLaunchDate: descending
+  sortd: launchDate
 old-games:
   title: Games older than 5 years
   sortLaunchDate:
@@ -32,11 +32,11 @@ old-games:
 ####################
 lowest-price:
   title: Non-free games with the lowest prices
-  sortFinalPrice:
+  sort: finalPrice
   finalPrice: '>0~'
 most-expensive:
   title: The most expensive games
-  sortFinalPrice: descending
+  sortd: finalPrice
 free:
   title: Free games
   finalPrice: '~0'
@@ -47,109 +47,109 @@ free:
 ####################
 strategy:
   title: Strategy games
-  sortTags:
+  sort: tags
   tags: strategy
 fps:
   title: "FPS [First Person Shooter] games"
-  sortTags:
+  sort: tags
   tags: fps
 action:
   title: Action games
-  sortTags:
+  sort: tags
   tags: action
 adventure:
   title: Adventure games
-  sortTags:
+  sort: tags
   tags: adventure
 indie:
   title: Indie games
-  sortTags:
+  sort: tags
   tags: indie
 simulation:
   title: Simulation games
-  sortTags:
+  sort: tags
   tags: simulation
 co-op:
   title: Co-op games
-  sortTags:
+  sort: tags
   tags: co-op
 local-co-op:
   title: Local Co-op games
-  sortTags:
+  sort: tags
   tags: local co-op
 moba:
   title: Moba games
-  sortTags:
+  sort: tags
   tags: moba
 comedy:
   title: Comedy games
-  sortTags:
+  sort: tags
   tags: comedy
 point-and-click:
   title: "Point & click games"
-  sortTags:
+  sort: tags
   tags: point and click
 space:
   title: Space games
-  sortTags:
+  sort: tags
   tags: space
 sci-fi:
   title: Sci-fi games
-  sortTags:
+  sort: tags
   tags: sci-fi
 classic:
   title: Classic games
-  sortTags:
+  sort: tags
   tags: classic 
 retro:
   title: Retro games
-  sortTags:
+  sort: tags
   tags: retro
 city-builder:
   title: City building games
-  sortTags:
+  sort: tags
   tags: city builder
 tycoon:
   title: Tycoon games
-  sortTags:
+  sort: tags
   tags: tycoon
 puzzle:
   title: Puzzle games
-  sortTags:
+  sort: tags
   tags: puzzle
 platformer:
   title: Platformer games
-  sortTags:
+  sort: tags
   tags: platformer
 underrated:
   title: Underrated games
-  sortTags:
+  sort: tags
   tags: underrated
 tower-defense:
   title: Tower defense games
-  sortTags:
+  sort: tags
   tags: tower defense
 casual:
   title: F*cking casual games
-  sortTags:
+  sort: tags
   tags: casual
 
 ### Reviews ########
 ####################
 most-reviews:
   title: Games with a lot of reviews
-  sortReviews: descending
+  sortd: reviews
 best-reviews:
   title: Games with the best reviews
-  sortReviewsDistribution: descending
+  sortd: reviewsDistribution
   reviews: 50~
 worse-reviews:
   title: Games with the worse reviews
-  sortReviewsDistribution: ascending
+  sort: reviewsDistribution
   reviews: 50~
 good-reviews:
   title: Games with good reviews
-  sortReviewsDistribution: descending
+  sortd: reviewsDistribution
   reviewsDistribution: 90
   reviews: 100~
 
@@ -157,17 +157,17 @@ good-reviews:
 ####################
 low-playtime-disparity:
   title: Games with the lowest playtime disparity
-  sortPlaytimeDisparity:
+  sort: playtimeDisparity
   reviews: 10~
 most-playtime:
   title: Games with the highest amount of playing time
-  sortPlaytime: descending
+  sortd: playtime
 best-metascore:
   title: Games with the best metascore
-  sortMetascore: descending
+  sortd: metascore
 worse-metascore:
   title: Games with the worse metascore
-  sortMetascore:
+  sort: metascore
   metascore: 0~
 
 # technically-underrated:
