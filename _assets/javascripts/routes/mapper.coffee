@@ -32,7 +32,7 @@ class PTB.Routes.Mapper
   routeFromUrl: ->
     hash = window.location.hash.replace(/^#/, '')
     path = window.location.pathname.replace(/\/$/, '')
-    arrayStringParams = hash.split('&')
+    arrayStringParams = if hash then hash.split('&') else []
 
     params = {}
     for stringParam in arrayStringParams

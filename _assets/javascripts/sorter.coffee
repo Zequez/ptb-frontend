@@ -4,12 +4,13 @@ class PTB.SortersContainer extends PTB.DOMElement
   sorters: []
   activeSorter: null
 
+
   constructor: ->
     super
     @buildSorters()
+    @router = PTB.Services.inject('RouterService')
+
     @bind()
-    @readStatusQuo()
-    
 
   buildSorters: ->
     @sorters = [] 
@@ -20,50 +21,41 @@ class PTB.SortersContainer extends PTB.DOMElement
     for sorter in @sorters
       sorter.on 'change', (sorter)=>
         @changeSorter(sorter)
+        @changeRoute()
         @fire 'change'
+
+    @router.onParamChange 'sort', (sortName)=> @setSortState sortName, true
+    @router.onParamChange 'sortd', (sortName)=> @setSortState sortName, false
 
   sort: (games)->
     if @activeSorter
       @activeSorter.sort games
     null
 
-  readStatusQuo: ->
+  # readStatusQuo: ->
+  #   for sorter in @sorters
+  #     if sorter.enabled?
+  #       @activeSorter = sorter
+  #       return
+
+  setSortState: (sortName, ascending)->
+    sortName = @router.fromAlias sortName
     for sorter in @sorters
-      if sorter.enabled?
-        @activeSorter = sorter
-        return
-
-  getSortState: ->
-    states = {}
-    states[@addSortPrefix @activeSorter.sortValueName] = (if @activeSorter.ascending then null else 'descending')
-    states
-
-  setSortState: (states)->
-    for stateName, stateValue of states
-      if stateName[0..3] == 'sort'
-        unprefixedName = @removeSortPrefix(stateName)
-        for sorter in @sorters
-          if sorter.sortValueName == unprefixedName
-            sorter.setAscending(stateValue != 'descending')
-            @changeSorter(sorter)
+      if sorter.sortValueName == sortName
+        sorter.setAscending(ascending)
+        @changeSorter(sorter)
 
   changeSorter: (sorter)->
     if @activeSorter? and @activeSorter != sorter
       @activeSorter.reset()
     @activeSorter = sorter
 
-  addSortPrefix: (name)->
-    'sort' + @capitalize(name)
-
-  removeSortPrefix: (name)->
-    @uncapitalize(name[4..])
-
-  capitalize: (string)->
-    string.charAt(0).toUpperCase() + string[1..]
-
-  uncapitalize: (string)->
-    string.charAt(0).toLowerCase() + string[1..]
-
+  changeRoute: ->
+    param = if @activeSorter.ascending then 'sort' else 'sortd'
+    oldParam = if @activeSorter.ascending then 'sortd' else 'sort'
+    value = @router.toAlias @activeSorter.sortValueName
+    @router.setParam param, value
+    @router.removeParam oldParam
 
 class PTB.Sorter extends PTB.DOMElement
   ascending: false
@@ -72,7 +64,6 @@ class PTB.Sorter extends PTB.DOMElement
   constructor: (@e)->
     @sortValueName = @e.attributes.sort.value
     @bind()
-    @readStatusQuo()
 
   bind: ->
     @e.addEventListener 'click', => @changeDirection() 
@@ -130,14 +121,14 @@ class PTB.Sorter extends PTB.DOMElement
     null
 
 
-  readStatusQuo: ->
-    startAscending = @e.classList.contains 'ascending'
-    startDescending = @e.classList.contains 'descending'
-    if startAscending
-      @ascending = true
-      @enabled = true
-    else if startDescending
-      @ascending = false
-      @enabled = true
-    else
-      @enabled = false
+  # readStatusQuo: ->
+  #   startAscending = @e.classList.contains 'ascending'
+  #   startDescending = @e.classList.contains 'descending'
+  #   if startAscending
+  #     @ascending = true
+  #     @enabled = true
+  #   else if startDescending
+  #     @ascending = false
+  #     @enabled = true
+  #   else
+  #     @enabled = false

@@ -10,14 +10,18 @@
 
 #= require eventable
 #= require elements
-#= require services/data_service
-#= require services/i18n
 
-#= require routes/mapping_data.js
+#= require routes/mapping_data
+#= require routes/alias_data
+#= require routes/params_alias
 #= require routes/mapper
 #= require routes/map
 #= require routes/route
 #= require routes/router
+
+#= require services/data_service
+#= require services/router_service
+#= require services/i18n
 
 #= require games
 #= require game

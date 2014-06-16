@@ -7,6 +7,7 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
     @bind()
     @readValues()
     @findPlaceholder()
+    @bindRoute()
 
   bind: ->
     @eValueStart = @e.getElementsByClassName('number-filter-value-start')[0]
@@ -18,6 +19,7 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
   onChange: ->
     @applyPlaceholder()
     @readValues()
+    @changeRoute()
     @fire('change')
 
   readValues: ->
@@ -58,7 +60,7 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
       @insertOption option
       @valueEnd = @parseValue option.value
 
-    @active = @setActive @valueStart.selected, @valueEnd.selected
+    @setActive @valueStart.selected, @valueEnd.selected
     @writeValues()
 
   getUrlValue: ->

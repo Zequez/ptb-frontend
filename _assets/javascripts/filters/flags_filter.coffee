@@ -11,6 +11,7 @@ class PTB.Filters.FlagsFilter extends PTB.Filters.BaseFilter
       @flagsList = @attributes.flagsList = flagsList
       super(@e)
       @bind()
+      @bindRoute()
 
   readOptions: ->
     @flagsListDataName = @e.attributes['flags-list-data'].value
@@ -21,6 +22,7 @@ class PTB.Filters.FlagsFilter extends PTB.Filters.BaseFilter
 
   onChange: ->
     @readValues()
+    @changeRoute()
     @fire('change')
 
   readValues: ->

@@ -1,0 +1,1 @@
+PTB.Services.RouterService = PTB.Routes.Router

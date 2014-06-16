@@ -29,6 +29,9 @@ class PTB.GamesContainer extends PTB.DOMElement
 
 		@currentRender = @initialRender
 
+	isPreRendered: ->
+		@e.children.length != 0
+
 	renderMore: (amount = 50)->
 		gamesToRender = @games[@currentRender...(@currentRender+amount)]
 		fragment = document.createDocumentFragment()

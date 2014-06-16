@@ -4,18 +4,24 @@ class PTB.Filters.TextFilter extends PTB.Filters.BaseFilter
   value: ''
   oldValue: ''
 
+  changeTimeout: null
+
   constructor: ->
     super
     @bind()
+    @bindRoute()
 
   bind: ->
     @eValue = @e.$$('.text-filter-value')
     @eValue.addEventListener 'keyup', @onChange.bind(@)
 
   onChange: ->
-    @readValues()
-
-    @fire 'change', @shrinking
+    clearTimeout @changeTimeout if @changeTimeout
+    @changeTimeout = setTimeout =>
+      @readValues()
+      @changeRoute()
+      @fire 'change', @shrinking
+    , 250
 
   readValues: ->
     @oldValue = @value

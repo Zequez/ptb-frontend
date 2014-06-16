@@ -10,6 +10,7 @@ class PTB.PageCtrl
 
     @dataService = PTB.Services.inject 'DataService' # Make-believe dependency injection
     @i18n = PTB.Services.inject('I18n')
+    @router = PTB.Services.inject('RouterService')
 
     @autorender = document.location.hash != ''
 
@@ -32,30 +33,20 @@ class PTB.PageCtrl
       @games.push(new PTB.Game(gameAttr))
     @filteredGames = @games
     @buildContainers()
-    
-    @router.initializeState()
 
   buildContainers: ->
     @gamesContainer = new PTB.GamesContainer @games
     @filtersContainer = new PTB.FiltersContainer
     @sortersContainer = new PTB.SortersContainer
-    @router = new PTB.Routes.Router
     @filtersContainer.createOptions @games
+    @render() unless @gamesContainer.isPreRendered()
     @bind()
 
   bind: ->
     @filtersContainer.on 'change', (shrinker)=> 
       @filter(shrinker)
-      @route()
     @sortersContainer.on 'change', => 
       @sort()
-      @route()
-    @router.on 'change', (states, title)=>
-      @setPageTitle title
-      @sortersContainer.setSortState(states)
-      @filtersContainer.setFiltersState(states)
-      @filter() if @autorender
-      @autorender = true
     @e.addEventListener 'click', @onClick.bind(@)
 
   render: ->
@@ -90,14 +81,6 @@ class PTB.PageCtrl
     @sortersContainer.sort @filteredGames
     @render()
 
-  route: ->
-    filterStates = @filtersContainer.getFiltersState()
-    sorterStates = @sortersContainer.getSortState()
-    for stateName, stateValue of sorterStates
-      filterStates[stateName] = stateValue
-
-    route = @router.setState(filterStates)
-    @setPageTitle route.title
 
   onClick: (ev)->
     if ev.target.classList.contains('tag')

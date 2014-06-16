@@ -54,7 +54,6 @@ class PTB.Tooltipler
     if title
       @setThePositionToTheTopLeftSoTheFuckerDoesntGlitchTheBodyOverflowOnChrome()
       title = title.replace(String.fromCharCode(13), '<br/>')
-      console.log title, title.length
       @eTitle.innerHTML = title
       @visible = true
       @e.classList.add('visible')

@@ -29,6 +29,6 @@ class PTB.Routes.Map
   generateRoute: (queryParams)->
     additionalParams = {}
     for queryParamName, queryParamValue of queryParams
-      if @params[queryParamName] == undefined
+      if @params[queryParamName] != queryParamValue
         additionalParams[queryParamName] = queryParamValue
     new PTB.Routes.Route @path, @params, additionalParams, @title

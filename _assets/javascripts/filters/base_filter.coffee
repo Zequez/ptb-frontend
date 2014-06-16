@@ -1,5 +1,6 @@
 class PTB.Filters.BaseFilter extends PTB.TemplateElement
   active: false
+  router: null
 
   constructor: (@e)->
     # Sadly I had to recur to JS since I didn't find a way
@@ -10,6 +11,7 @@ class PTB.Filters.BaseFilter extends PTB.TemplateElement
     super
 
     @filterValueName = @e.attributes.filter.value
+    @router = PTB.Services.inject('RouterService')
     
 
   createOptions: ->
@@ -19,3 +21,12 @@ class PTB.Filters.BaseFilter extends PTB.TemplateElement
 
   filter: (games, rejected)->
     games
+
+  changeRoute: ->
+    if @active
+      @router.setParam @filterValueName, @getUrlValue()
+    else
+      @router.removeParam @filterValueName
+
+  bindRoute: ->
+    @router.onParamChange(@filterValueName, @setUrlValue.bind(@))
