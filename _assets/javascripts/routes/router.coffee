@@ -41,6 +41,9 @@ class PTB.Routes.Router extends PTB.Eventable
   getRoute: ->
     @route
 
+  hasAdditionalParams: ->
+    @route.hasAdditionalParams()
+
   setParam: (param, value)->
     @rawParams[param] = value
     @setState(@rawParams)

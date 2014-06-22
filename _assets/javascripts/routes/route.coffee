@@ -21,3 +21,8 @@ class PTB.Routes.Route
 
   trailingSlashPath: ->
     @path.replace(/\/$/, '') + '/'
+
+  hasAdditionalParams: ->
+    for paramName of @searchParams
+      return true
+    return false

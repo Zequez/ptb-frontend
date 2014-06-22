@@ -37,7 +37,7 @@ class PTB.PageCtrl
     @filtersContainer = new PTB.FiltersContainer
     @sortersContainer = new PTB.SortersContainer
     @filtersContainer.createOptions @games
-    @filter() unless @gamesContainer.isPreRendered()
+    @filter() if @router.hasAdditionalParams() or not @gamesContainer.isPreRendered()
     @bind()
 
   bind: ->
