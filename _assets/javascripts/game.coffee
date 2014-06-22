@@ -38,7 +38,7 @@ class PTB.Game extends PTB.Eventable
       @attributes.averageTimeOverPrice = Math.round((@attributes.averageTime / @attributes.finalPrice) * 100) / 100
 
     if @attributes.playtimeDeviation?
-      @attributes.playtimeDeviationPercentage = Math.floor((@attributes.playtimeDeviation / @attributes.averageTime - 1) * 100) / 100
+      @attributes.playtimeDeviationPercentage = Math.floor(@attributes.playtimeDeviation*10000)/100
     else
       @attributes.playtimeDeviationPercentage = null
 

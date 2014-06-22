@@ -44,7 +44,7 @@
     <% } else { %> - <% } %>
   </td>
   <td class="centiles">
-    <%=(playtimeDeviationPercentage !== null) ? playtimeDeviationPercentage : '-'%>
+    <%=(playtimeDeviationPercentage !== null) ? playtimeDeviationPercentage + '%' : '-'%>
   </td>
   <td class="features-flags-cell">
     <% for(flagName in featuresFlagsList) { %>

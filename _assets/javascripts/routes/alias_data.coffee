@@ -17,5 +17,5 @@ PTB.Routes.aliasData =
   'metaScore': 'metascore'
   'sortPositiveReviewsPercentage': 'sortReviewsDistribution'
   'positiveReviewsPercentage': 'reviewsDistribution'
-  'sortPlaytimeDeviationPercentage': 'sortPlaytimeDisparity'
-  'playtimeDeviationPercentage': 'playtimeDisparity'
+  'sortPlaytimeDeviationPercentage': 'sortPlaytimeEqualness'
+  'playtimeDeviationPercentage': 'playtimeEqualness'
