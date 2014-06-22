@@ -42,7 +42,7 @@ class PTB.Game extends PTB.Eventable
     else
       @attributes.playtimeDeviationPercentage = null
 
-    if @attributes.totalReviews > 0
+    if @attributes.totalReviews > 5
       @attributes.positiveReviewsPercentage = Math.floor(@attributes.positiveReviewsLength/@attributes.totalReviews*10000)/100
     else
       @attributes.positiveReviewsPercentage = null
