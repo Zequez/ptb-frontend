@@ -36,19 +36,28 @@ class PTB.PageCtrl
     @gamesContainer = new PTB.GamesContainer @games
     @filtersContainer = new PTB.FiltersContainer
     @sortersContainer = new PTB.SortersContainer
-    @filter() if @router.hasAdditionalParams() or not @gamesContainer.isPreRendered()
+    @filter()
+    if @router.hasAdditionalParams() or not @gamesContainer.isPreRendered()
+      @render()
+    else
+      @setGames()
     @bind()
 
   bind: ->
     @filtersContainer.on 'change', (shrinker)=> 
       @filter(shrinker)
+      @render()
     @sortersContainer.on 'change', => 
       @sort()
+      @render()
     @router.onRouteChange (route)=> @setPageTitle route.title
     @e.addEventListener 'click', @onClick.bind(@)
 
-  render: ->
+  setGames: ->
     @gamesContainer.setGames @filteredGames
+
+  render: ->
+    @setGames()
     console.time 'Render time'
     @gamesContainer.render()
     console.timeEnd 'Render time'
@@ -77,7 +86,6 @@ class PTB.PageCtrl
 
   sort: ->
     @sortersContainer.sort @filteredGames
-    @render()
 
   onClick: (ev)->
     if ev.target.classList.contains('tag')
