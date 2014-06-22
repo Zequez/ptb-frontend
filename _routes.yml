@@ -46,8 +46,25 @@ most-expensive:
 free:
   title: Free games
   finalPrice: '~0'
-# sale:
-#   sale: yes
+on-sale:
+  title: Games on sale
+  sortd: sale
+  sale: 0~
+linux-on-sale:
+  title: Games on sale for Linux
+  sortd: sale
+  sale: 0~
+  os: linux
+windows-on-sale:
+  title: Games on sale for Windows
+  sortd: sale
+  sale: 0~
+  os: win
+mac-on-sale:
+  title: Games on sale for Mac
+  sortd: sale
+  sale: 0~
+  os: mac
 
 ### Game tags ######
 ####################

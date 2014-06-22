@@ -62,6 +62,11 @@ class PTB.Routes.Router extends PTB.Eventable
       cb(@rawParams[param])
     null
 
+  onRouteChange: (cb)->
+    @on 'change', cb
+    cb(@route)
+    null
+
   toAlias: (param)->
     @paramsAlias.toAlias(param)
 
@@ -83,7 +88,7 @@ class PTB.Routes.Router extends PTB.Eventable
     @params = @route.params
     @rawParams = @paramsAlias.fromAlias(@route.params)
 
-    @fire('change', @rawParams, @route.title)
+    @fire('change', @route)
 
     for paramValue, key of @rawParams
       if @rawParams[key] != @previousParams[key]
@@ -94,3 +99,4 @@ class PTB.Routes.Router extends PTB.Eventable
     @ignoreNextEvent = true
     window.history.replaceState {}, @route.title, @route.trailingSlashPath()
     window.location.hash = @route.hash()
+    @fire('change', @route)

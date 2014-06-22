@@ -42,7 +42,6 @@ class PTB.Filters.NumberFilter extends PTB.Filters.BaseFilter
 
     foundStart = false
     foundEnd = false
-    console.log  'LA CONCHA DE TU VIEJA'
     for option in @options
       if option.raw == start
         @valueStart = @parseValue option.value

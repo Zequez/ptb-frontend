@@ -44,6 +44,7 @@ class PTB.PageCtrl
       @filter(shrinker)
     @sortersContainer.on 'change', => 
       @sort()
+    @router.onRouteChange (route)=> @setPageTitle route.title
     @e.addEventListener 'click', @onClick.bind(@)
 
   render: ->
@@ -77,7 +78,6 @@ class PTB.PageCtrl
   sort: ->
     @sortersContainer.sort @filteredGames
     @render()
-
 
   onClick: (ev)->
     if ev.target.classList.contains('tag')
