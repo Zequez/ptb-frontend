@@ -15,9 +15,11 @@ class PTB.Routes.Map
 
     hasParams = false
     for paramName, paramVal of @params
+      # paramName = paramName.replace('sortd', 'sort')
       paramsLength++
       hasParams = true
       for queryParamName, queryParamVal of queryParams
+        # quertyParamName = queryParamName.replace('sortd', 'sort')
         if paramName == queryParamName and paramVal == queryParamVal
           paramsMatch++
 

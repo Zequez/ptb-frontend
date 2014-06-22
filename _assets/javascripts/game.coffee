@@ -49,6 +49,8 @@ class PTB.Game extends PTB.Eventable
 
     @attributes.tagsRating = 0
 
+    @attributes.salePercentage = 1 - @attributes.salePrice / @attributes.price
+
   buildElement: ->
     if not @built
       template = JST['templates/game'](@attributes)
