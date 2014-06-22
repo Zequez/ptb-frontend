@@ -43,7 +43,7 @@
   <td class="centiles">
     <%=(playtimeDeviationPercentage !== null) ? playtimeDeviationPercentage : '-'%>
   </td>
-  <td>
+  <td class="features-flags-cell">
     <% for(flagName in featuresFlagsList) { %>
       <span title="<%=flagsLabels[flagName]%>" 
             class="flag flag-<%=flagName%> 
@@ -52,7 +52,7 @@
       </span>
     <% } %>
   </td>
-  <td>
+  <td class="os-flags-cell">
     <% for(flagName in osFlagsList) { %>
       <span title="<%=flagsLabels[flagName]%>" 
             class="flag flag-<%=flagName%>
