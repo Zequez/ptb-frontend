@@ -23,6 +23,9 @@
       <%=price ? "$" + price : 'Free' %>
     <% } %>
   </td>
+  <td>
+    -<% if(sale !== null) { %><%=sale%>%<% } %>
+  </td>
   <td><%=averageTime ? averageTime + ' hours' : '-' %></td>
   <td class="hidden"><%=maxTime %> hours</td>
   <td class="hidden"><%=minTime %> hours</td>

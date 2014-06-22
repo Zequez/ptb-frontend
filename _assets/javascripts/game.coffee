@@ -49,7 +49,10 @@ class PTB.Game extends PTB.Eventable
 
     @attributes.tagsRating = 0
 
-    @attributes.salePercentage = 1 - @attributes.salePrice / @attributes.price
+    if @attributes.salePrice
+      @attributes.sale = Math.floor((1 - @attributes.salePrice / @attributes.price)*100)
+    else
+      @attributes.sale = null
 
   buildElement: ->
     if not @built

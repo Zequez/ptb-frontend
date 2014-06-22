@@ -12,9 +12,6 @@ class PTB.Filters.BaseFilter extends PTB.TemplateElement
 
     @filterValueName = @e.attributes.filter.value
     @router = PTB.Services.inject('RouterService')
-    
-
-  createOptions: ->
 
   broadcast: (name, value)->
     @fire name, value

@@ -26,9 +26,6 @@ class PTB.FiltersContainer extends PTB.DOMElement
       accepted = filter.filter(accepted, rejected)
     accepted
 
-  createOptions: (games)->
-    filter.createOptions(games) for filter in @filters
-
   broadcast: (name, value)->
     for filter in @filters
       filter.broadcast(name, value)
