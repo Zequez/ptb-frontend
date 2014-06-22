@@ -12,8 +12,6 @@ class PTB.PageCtrl
     @i18n = PTB.Services.inject('I18n')
     @router = PTB.Services.inject('RouterService')
 
-    @autorender = document.location.hash != ''
-
     @build()
 
     @dataService.all (data)=>
@@ -39,7 +37,7 @@ class PTB.PageCtrl
     @filtersContainer = new PTB.FiltersContainer
     @sortersContainer = new PTB.SortersContainer
     @filtersContainer.createOptions @games
-    @render() unless @gamesContainer.isPreRendered()
+    @filter() unless @gamesContainer.isPreRendered()
     @bind()
 
   bind: ->

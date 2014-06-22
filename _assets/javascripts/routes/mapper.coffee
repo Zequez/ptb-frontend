@@ -21,7 +21,8 @@ class PTB.Routes.Mapper
       if matches > maxMatches
         maxMatches = matches
         maxMatchesMap = map
-      else if matches == maxMatches and matches != 0
+      else if matches == maxMatches and matches != 0 and map != @rootMapping
+        if maxMatchesMap == @rootMapping then maxMatchesMap = map # Always priorize non-root path
         console.warn 'Routes collision!', map.path, maxMatchesMap.path
 
     if maxMatchesMap

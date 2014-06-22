@@ -2,17 +2,23 @@
 ### Root route #####
 ####################
 "/":
-  sort: playtimeOverBuck
+  sortd: playtimeOverBuck
   title: "It ended up being a little more than playtime for the buck: it kind of let you discover games&trade;"
 
 ### OS Routes ######
 ####################
-# linux:
-#   os: linux
-# osx:
-#   os: osx
-# windows:
-#   os: windows
+linux:
+  title: Games for Linux
+  sortd: playtimeOverBuck
+  os: linux
+osx:
+  title: Games for Mac OSX
+  sortd: playtimeOverBuck
+  os: mac
+windows:
+  title: Games for Windows
+  sortd: playtimeOverBuck
+  os: win
 
 ### Launch date ####
 ####################
@@ -25,7 +31,7 @@ oldest-games:
   sortd: launchDate
 old-games:
   title: Games older than 5 years
-  sortLaunchDate:
+  sort: launchDate
   launchDate: 5y~
 
 ### Price ##########

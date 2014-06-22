@@ -84,7 +84,7 @@ class PTB.Routes.Router extends PTB.Eventable
 
     for paramValue, key of @rawParams
       if @rawParams[key] != @previousParams[key]
-        @fire "_param_#{param}", paramValue
+        @fire "_param_#{key}", paramValue
     null
 
   _changeLocation: ->
