@@ -47,5 +47,6 @@ class PTB.GamesContainer extends PTB.DOMElement
 		@e.removeChild @e.firstChild while @e.firstChild
 
 	autoLoad: ->
-		if document.body.clientHeight-document.body.scrollTop <= @autoLoadPixelsAway
+		scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+		if document.body.clientHeight-scrollTop <= @autoLoadPixelsAway
 			@renderMore()

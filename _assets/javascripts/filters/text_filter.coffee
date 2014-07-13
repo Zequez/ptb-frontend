@@ -25,7 +25,7 @@ class PTB.Filters.TextFilter extends PTB.Filters.BaseFilter
 
   readValues: ->
     @oldValue = @value
-    @value = @eValue.value
+    @value = @eValue.value.toLowerCase();
     @shrinking = @value[0...@oldValue.length].replace(@oldValue, '') == '' and @value != ''
     @active = @value != ''
 
