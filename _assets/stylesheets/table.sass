@@ -67,7 +67,6 @@ $borderRadius: 5px
     height: $tdHeight*1.25
     cursor: pointer
     &:after
-      // content: ' ▲'
       display: inline-block
       margin-bottom: -3px
       margin-left: 5px
@@ -75,10 +74,10 @@ $borderRadius: 5px
       -webkit-transform: scaleY(0.5)
 
     &.ascending:after
-      content: ' ▲'
+      content: ' \25B2' // BLACK UP-POINTING TRIANGLE
 
     &.descending:after
-      content: ' ▼'
+      content: ' \25BC' // BLACK DOWN-POINTING TRIANGLE
 
   .header-filters th
     padding: $tdPaddingH

@@ -5,7 +5,7 @@ end
 
 desc 'Start Jekyll webserver watch'
 task :watch do
-  exec 'jekyll serve -w --force_polling -P 9999'
+  exec 'jekyll serve -w -P 9999'
 end
 
 desc 'Build Jekyll'
