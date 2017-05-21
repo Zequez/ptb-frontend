@@ -1,6 +1,8 @@
-# Deprecated
+## ⚠️ Deprecated ⚠️
 
-Inspired by the essence of this project I created [GGFilter.com](http://ggfilter.com/), which have similar goals of helping you find games, but with a greater scope and infrastructure.
+Inspired by the essence of this project I created [GGFilter.com](http://ggfilter.com/), which has similar goals of helping you find games, but with a greater scope and infrastructure.
+
+---
 
 ### Site generator for PlaytimeForTheBuck
 
